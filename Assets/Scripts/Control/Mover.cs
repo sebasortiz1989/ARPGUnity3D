@@ -33,7 +33,7 @@ public class Mover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveToCursor();
+
         ChangeWalkRunSpeed();
         UpdateAnimator();
     }
@@ -80,17 +80,8 @@ public class Mover : MonoBehaviour
         playerAnim.SetFloat(SPEED_BLEND_VALUE, Mathf.Abs(localVelocity.z));
     }
 
-    private void MoveToCursor()
+    public void MoveTo(Vector3 destination)
     {
-        if (Input.GetMouseButton(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hitInformation;
-            bool hasHit = Physics.Raycast(ray, out hitInformation);
-            if (hasHit)
-            {
-                playerNavMeshAgent.destination = hitInformation.point;
-            }
-        }
+        playerNavMeshAgent.destination = destination;
     }
 }
