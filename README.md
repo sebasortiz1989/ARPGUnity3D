@@ -6,9 +6,10 @@
 In a long bloody battle that prophecies told, the light will prevail hence wisdom is gold.
 </div>
 
-|<img src="images/art1.jpg" width="400">|<img src="images/art2.jpg" width="200">|
-|---|---|
-|<img src="images/Screenshot1.png" width="400">|<img src="images/Screenshot2.PNG" width="330">|
+<img src="images/art1.jpg" width="300">
+<img src="images/art2.jpg" width="150">
+<img src="images/Screenshot1.png" width="300">
+<img src="images/Screenshot2.PNG" width="250">
 
 - **Genre:** 3rd person action RPG, single player, fixed-camera.
 - **Target Audience:** 13+ (T for Teen) fans of old school RPG's like Diablo or Torchlight.
@@ -42,6 +43,5 @@ Eventhough you are a warrior, you can also learn to channel your energy and deal
 - Level building and game progression
 - Branching dialogue system
 - Inventory, loot, usable items 
-
 
 **Reference Games:** Diablo, Torchlight 2 
