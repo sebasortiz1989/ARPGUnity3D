@@ -18,9 +18,10 @@ namespace RPG.Combat
 
         // String const
         private const string ATTACK_TRIGGER = "attack";
+        private const string STOP_ATTACK_TRIGGER = "stopAttack"; 
 
         // Initialize variables
-        Transform target;
+        Health target;
         float timeSinceLastAttack = 1f;
 
         // Start is called before the first frame update
@@ -38,10 +39,11 @@ namespace RPG.Combat
 
         private void MoveTowardsTarget()
         {
-            if (target != null)
+            if (target != null && !target.IsDead())
             {
-                GetComponent<Mover>().MoveTo(target.position);
-                bool inRange = Vector3.Distance(transform.position, target.position) < weaponRange;
+                anim.ResetTrigger(STOP_ATTACK_TRIGGER); //Problem that he tries to attack sometimes and it stops attacking, it will be explained later.
+                GetComponent<Mover>().MoveTo(target.transform.position);
+                bool inRange = Vector3.Distance(transform.position, target.transform.position) < weaponRange;
                 if (inRange)
                 {
                     GetComponent<Mover>().Cancel();
@@ -67,20 +69,20 @@ namespace RPG.Combat
             //playerAnim.ResetTrigger(ATTACK_TRIGGER);
             //Cancel();
 
-            target.gameObject.GetComponent<Health>().TakeDamage(weaponDamage);
+            if (target != null)
+                target.TakeDamage(weaponDamage);
         }
 
         public void Attack(CombatTarget combatTarget)
         {
             GetComponent<ActionScheduler>().StartAction(this);
-            target = combatTarget.transform;
+            target = combatTarget.GetComponent<Health>();
         }
 
         public void Cancel()
         {
+            anim.SetTrigger(STOP_ATTACK_TRIGGER);
             target = null;
         }
-
-
     }
 }

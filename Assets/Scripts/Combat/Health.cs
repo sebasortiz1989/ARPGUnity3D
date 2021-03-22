@@ -16,7 +16,7 @@ namespace RPG.Combat
         private const string DIE_TRIGGER = "die";
 
         // Initialize Variables
-        bool isDeath;
+        bool isDead;
 
         // Start is called before the first frame update
         void Start()
@@ -28,7 +28,7 @@ namespace RPG.Combat
         {
             healthPoints = Mathf.Max(healthPoints - damage, 0);
             Debug.Log(healthPoints);
-            if (healthPoints == 0 && !isDeath)
+            if (healthPoints == 0 && !isDead)
             {
                 Die();
             }
@@ -36,8 +36,13 @@ namespace RPG.Combat
 
         private void Die()
         {
-            isDeath = true;
+            isDead = true;
             anim.SetTrigger(DIE_TRIGGER);
+        }
+
+        public bool IsDead()
+        {
+            return isDead;
         }
     }
 }
