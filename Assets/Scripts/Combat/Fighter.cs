@@ -9,7 +9,8 @@ namespace RPG.Combat
     public class Fighter : MonoBehaviour, IAction
     {
         // Config
-        [SerializeField] float weaponRange = 2;
+        [SerializeField] float weaponRange = 2f;
+        [SerializeField] [Range(0, 3)] float timeBetweenAttacks = 1f;
 
         // Cached Component References
         Animator playerAnim;
@@ -19,6 +20,7 @@ namespace RPG.Combat
 
         // Initialize variables
         Transform target;
+        float timeSinceLastAttack = 1f;
 
         // Start is called before the first frame update
         void Start()
@@ -29,6 +31,7 @@ namespace RPG.Combat
         // Update is called once per frame
         void Update()
         {
+            timeSinceLastAttack += Time.deltaTime;
             MoveTowardsTarget();
         }
 
@@ -48,7 +51,11 @@ namespace RPG.Combat
 
         private void AttackBehaviour()
         {
-            playerAnim.SetTrigger(ATTACK_TRIGGER);
+            if (timeSinceLastAttack >= timeBetweenAttacks)
+            {
+                playerAnim.SetTrigger(ATTACK_TRIGGER);
+                timeSinceLastAttack = 0;
+            }
         }
 
         public void Attack(CombatTarget combatTarget)
