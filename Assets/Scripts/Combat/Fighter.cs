@@ -11,8 +11,20 @@ namespace RPG.Combat
         // Config
         [SerializeField] float weaponRange = 2;
 
+        // Cached Component References
+        Animator playerAnim;
+
+        // String const
+        private const string ATTACK_TRIGGER = "attack";
+
         // Initialize variables
         Transform target;
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            playerAnim = GetComponent<Animator>();
+        }
 
         // Update is called once per frame
         void Update()
@@ -29,9 +41,14 @@ namespace RPG.Combat
                 if (inRange)
                 {
                     GetComponent<Mover>().Cancel();
-                    Debug.Log("Attacking");
+                    AttackBehaviour();
                 }
             }
+        }
+
+        private void AttackBehaviour()
+        {
+            playerAnim.SetTrigger(ATTACK_TRIGGER);
         }
 
         public void Attack(CombatTarget combatTarget)
@@ -43,6 +60,14 @@ namespace RPG.Combat
         public void Cancel()
         {
             target = null;
+        }
+
+        // Animation Event
+        public void Hit()
+        {
+            // This makes to only attack once
+            //playerAnim.ResetTrigger(ATTACK_TRIGGER);
+            //Cancel();
         }
     }
 }
