@@ -11,6 +11,7 @@ namespace RPG.Combat
         // Config
         [SerializeField] float weaponRange = 2f;
         [SerializeField] [Range(0, 3)] float timeBetweenAttacks = 1f;
+        [SerializeField] float weaponDamage = 3;
 
         // Cached Component References
         Animator playerAnim;
@@ -53,9 +54,20 @@ namespace RPG.Combat
         {
             if (timeSinceLastAttack >= timeBetweenAttacks)
             {
+                // This will trigger the Hit() event
                 playerAnim.SetTrigger(ATTACK_TRIGGER);
                 timeSinceLastAttack = 0;
             }
+        }
+
+        // Animation Event
+        public void Hit()
+        {
+            // This makes to only attack once
+            //playerAnim.ResetTrigger(ATTACK_TRIGGER);
+            //Cancel();
+
+            target.gameObject.GetComponent<Health>().TakeDamage(weaponDamage);
         }
 
         public void Attack(CombatTarget combatTarget)
@@ -69,12 +81,6 @@ namespace RPG.Combat
             target = null;
         }
 
-        // Animation Event
-        public void Hit()
-        {
-            // This makes to only attack once
-            //playerAnim.ResetTrigger(ATTACK_TRIGGER);
-            //Cancel();
-        }
+
     }
 }
