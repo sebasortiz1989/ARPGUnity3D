@@ -1,32 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RPG.Movement;
+using RPG.Combat;
 
-public class PlayerController : MonoBehaviour
+namespace RPG.Control
 {
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerController : MonoBehaviour
     {
+        // String const
         
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        MoveToCursor();
-    }
-
-    private void MoveToCursor()
-    {
-        if (Input.GetMouseButton(0))
+        // Start is called before the first frame update
+        void Start()
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hitInformation;
-            bool hasHit = Physics.Raycast(ray, out hitInformation);
-            if (hasHit)
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            InteractWithMovement();
+            InteractWithCombat();
+        }
+
+        private void InteractWithCombat()
+        {
+            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
+            foreach (RaycastHit hit in hits)
             {
-                GetComponent<Mover>().MoveTo(hitInformation.point);
+                CombatTarget target = hit.transform.GetComponent<CombatTarget>();
+                if (target == null) continue;
+
+                if (Input.GetMouseButtonDown(0))
+                        GetComponent<Fighter>().Attack(target);
             }
+        }
+
+        private void InteractWithMovement()
+        {
+            if (Input.GetMouseButton(0))
+            {
+                RaycastHit hitInformation;
+                bool hasHit = Physics.Raycast(GetMouseRay(), out hitInformation);
+                if (hasHit)
+                {
+                    GetComponent<Mover>().MoveTo(hitInformation.point);
+                }
+            }
+        }
+
+        private static Ray GetMouseRay()
+        {
+            return Camera.main.ScreenPointToRay(Input.mousePosition);
         }
     }
 }
