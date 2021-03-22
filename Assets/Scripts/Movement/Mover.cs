@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using RPG.Combat;
 
 namespace RPG.Movement
 {
@@ -82,9 +83,21 @@ namespace RPG.Movement
             playerAnim.SetFloat(SPEED_BLEND_VALUE, Mathf.Abs(localVelocity.z));
         }
 
+        public void StartMoveAction(Vector3 destination)
+        {
+            GetComponent<Fighter>().CancelAttack();
+            MoveTo(destination);
+        }
+
         public void MoveTo(Vector3 destination)
         {
             playerNavMeshAgent.destination = destination;
+            playerNavMeshAgent.isStopped = false;
+        }
+
+        public void Stop()
+        {
+            playerNavMeshAgent.isStopped = true;
         }
     }
 }
