@@ -16,10 +16,16 @@ namespace RPG.Combat
         // Update is called once per frame
         void Update()
         {
+            MoveTowardsTarget();
+        }
+
+        private void MoveTowardsTarget()
+        {
             if (target != null)
             {
                 GetComponent<Mover>().MoveTo(target.position);
-                if (Vector3.Distance(transform.position, target.position) < weaponRange)
+                bool inRange = Vector3.Distance(transform.position, target.position) < weaponRange;
+                if (inRange)
                 {
                     GetComponent<Mover>().Stop();
                 }
