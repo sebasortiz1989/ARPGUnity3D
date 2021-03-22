@@ -6,10 +6,9 @@
 In a long bloody battle that prophecies told, the light will prevail hence wisdom is gold.
 </div>
 
-<img src="images/art1.jpg" width="300">
-<img src="images/art2.jpg" width="150">
-<img src="images/Screenshot1.png" width="300">
-<img src="images/Screenshot2.PNG" width="250">
+|<img src="images/art1.jpg" width="300">|<img src="images/art2.jpg" width="150">|
+|---|---|
+|<img src="images/Screenshot1.png" width="300">|<img src="images/Screenshot2.PNG" width="250">|
 
 - **Genre:** 3rd person action RPG, single player, fixed-camera.
 - **Target Audience:** 13+ (T for Teen) fans of old school RPG's like Diablo or Torchlight.
