@@ -11,13 +11,15 @@ GameObject:
   - component: {fileID: 1211404355269120935}
   - component: {fileID: 82452334}
   - component: {fileID: 1706115070}
+  - component: {fileID: -1986076413114524811}
   - component: {fileID: 82452333}
+  - component: {fileID: 4989351344971590118}
   - component: {fileID: 7743870870950096489}
-  - component: {fileID: 5640839475204974391}
   - component: {fileID: 3302191864241024606}
+  - component: {fileID: 2618145382409489985}
   m_Layer: 0
   m_Name: Character
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,6 +79,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!136 &-1986076413114524811
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211404355269120955}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.25
+  m_Height: 1.9
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &82452333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,6 +103,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9b926d8462f21d4fa41bc3cd2cf930d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4989351344971590118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211404355269120955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5eedb667d766b442aefcc949e91d0db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &7743870870950096489
@@ -101,21 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b44dcb2dab2108041b56adeb8d7dd97b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponRange: 2
-  timeBetweenAttacks: 1.5
+  weaponRange: 1.3
+  timeBetweenAttacks: 1
   weaponDamage: 3
---- !u!114 &5640839475204974391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1211404355269120955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5eedb667d766b442aefcc949e91d0db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3302191864241024606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,3 +144,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba98f4d85683327498211f2d859720b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2618145382409489985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211404355269120955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb761c14ef83ee488b9069a82cfc327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
