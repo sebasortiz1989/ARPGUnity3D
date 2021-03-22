@@ -14,7 +14,7 @@ namespace RPG.Combat
         [SerializeField] float weaponDamage = 3;
 
         // Cached Component References
-        Animator playerAnim;
+        Animator anim;
 
         // String const
         private const string ATTACK_TRIGGER = "attack";
@@ -26,7 +26,7 @@ namespace RPG.Combat
         // Start is called before the first frame update
         void Start()
         {
-            playerAnim = GetComponent<Animator>();
+            anim = GetComponent<Animator>();
         }
 
         // Update is called once per frame
@@ -55,7 +55,7 @@ namespace RPG.Combat
             if (timeSinceLastAttack >= timeBetweenAttacks)
             {
                 // This will trigger the Hit() event
-                playerAnim.SetTrigger(ATTACK_TRIGGER);
+                anim.SetTrigger(ATTACK_TRIGGER);
                 timeSinceLastAttack = 0;
             }
         }
