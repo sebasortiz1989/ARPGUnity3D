@@ -41,7 +41,6 @@ namespace RPG.Combat
         {
             if (target != null && !target.IsDead())
             {
-                anim.ResetTrigger(STOP_ATTACK_TRIGGER); //Problem that he tries to attack sometimes and it stops attacking, it will be explained later.
                 GetComponent<Mover>().MoveTo(target.transform.position);
                 bool inRange = Vector3.Distance(transform.position, target.transform.position) < weaponRange;
                 if (inRange)
@@ -58,9 +57,15 @@ namespace RPG.Combat
             if (timeSinceLastAttack >= timeBetweenAttacks)
             {
                 // This will trigger the Hit() event
-                anim.SetTrigger(ATTACK_TRIGGER);
+                TriggetAttack();
                 timeSinceLastAttack = 0;
             }
+        }
+
+        private void TriggetAttack()
+        {
+            anim.ResetTrigger(STOP_ATTACK_TRIGGER);
+            anim.SetTrigger(ATTACK_TRIGGER);
         }
 
         // Animation Event
@@ -70,8 +75,7 @@ namespace RPG.Combat
             //playerAnim.ResetTrigger(ATTACK_TRIGGER);
             //Cancel();
 
-            if (target != null)
-                target.TakeDamage(weaponDamage);
+            if (target != null) target.TakeDamage(weaponDamage);
         }
 
         public void Attack(CombatTarget combatTarget)
@@ -82,8 +86,14 @@ namespace RPG.Combat
 
         public void Cancel()
         {
-            anim.SetTrigger(STOP_ATTACK_TRIGGER);
+            StopAttack();
             target = null;
+        }
+
+        private void StopAttack()
+        {
+            anim.ResetTrigger(ATTACK_TRIGGER);
+            anim.SetTrigger(STOP_ATTACK_TRIGGER);
         }
 
         public bool CanAttack(CombatTarget combatTarget)
