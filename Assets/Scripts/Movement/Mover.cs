@@ -92,6 +92,7 @@ namespace RPG.Movement
         public void MoveTo(Vector3 destination)
         {
             playerNavMeshAgent.destination = destination;
+            transform.LookAt(destination);
             playerNavMeshAgent.isStopped = false;
         }
 
