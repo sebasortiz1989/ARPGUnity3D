@@ -22,7 +22,7 @@ namespace RPG.Combat
 
         // Initialize variables
         Health target;
-        float timeSinceLastAttack = 1f;
+        float timeSinceLastAttack = Mathf.Infinity;
 
         // Start is called before the first frame update
         void Start()

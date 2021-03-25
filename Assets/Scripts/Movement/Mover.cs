@@ -12,8 +12,9 @@ namespace RPG.Movement
         // Config
 
         // Cached Component References
-        NavMeshAgent playerNavMeshAgent;
-        Animator playerAnim;
+        NavMeshAgent navMeshAgent;
+        Animator anim;
+        Health health;
 
         // String const
         private const string SPEED_BLEND_VALUE = "fowardSpeed";
@@ -30,14 +31,15 @@ namespace RPG.Movement
         // Start is called before the first frame update
         void Start()
         {
-            playerNavMeshAgent = GetComponent<NavMeshAgent>();
-            playerAnim = GetComponent<Animator>();
+            navMeshAgent = GetComponent<NavMeshAgent>();
+            anim = GetComponent<Animator>();
+            health = GetComponent<Health>();
         }
 
         // Update is called once per frame
         void Update()
         {
-
+            navMeshAgent.enabled = !health.IsDead();
             ChangeWalkRunSpeed();
             UpdateAnimator();
         }
@@ -74,9 +76,9 @@ namespace RPG.Movement
 
                 // Change speed
                 if (walkOrRun)
-                    playerNavMeshAgent.speed = runSpeed;
+                    navMeshAgent.speed = runSpeed;
                 else
-                    playerNavMeshAgent.speed = walkSpeed;
+                    navMeshAgent.speed = walkSpeed;
             }
         }
 
@@ -84,7 +86,7 @@ namespace RPG.Movement
         {
             velocity = GetComponent<NavMeshAgent>().velocity;
             localVelocity = transform.InverseTransformDirection(velocity);
-            playerAnim.SetFloat(SPEED_BLEND_VALUE, Mathf.Abs(localVelocity.z));
+            anim.SetFloat(SPEED_BLEND_VALUE, Mathf.Abs(localVelocity.z));
         }
 
         public void StartMoveAction(Vector3 destination)
@@ -95,13 +97,13 @@ namespace RPG.Movement
 
         public void MoveTo(Vector3 destination)
         {
-            playerNavMeshAgent.destination = destination;
-            playerNavMeshAgent.isStopped = false;
+            navMeshAgent.destination = destination;
+            navMeshAgent.isStopped = false;
         }
 
         public void Cancel()
         {
-            playerNavMeshAgent.isStopped = true;
+            navMeshAgent.isStopped = true;
         }
     }
 }

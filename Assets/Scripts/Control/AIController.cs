@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RPG.Combat;
+using RPG.Core;
 
 namespace RPG.Control
 {
@@ -15,8 +16,8 @@ namespace RPG.Control
 
         // Cached reference
         GameObject player;
-        Fighter fighter;
         Health health;
+        Fighter fighter;
 
         // Initialize Variables
         float distanceToPlayer;
@@ -32,6 +33,7 @@ namespace RPG.Control
         // Update is called once per frame
         void Update()
         {
+            if (health.IsDead()) return;
             AttackIfPlayerInRange();
         }
 
@@ -46,7 +48,6 @@ namespace RPG.Control
             {
                 fighter.Cancel();
             }
-            if (health.IsDead()) fighter.Cancel();
         }
     }
 }
