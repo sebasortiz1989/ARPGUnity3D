@@ -9,7 +9,7 @@ namespace RPG.Control
     public class AIController : MonoBehaviour
     {
         // Config
-        [SerializeField] float chaseDistance = 5f;
+        [SerializeField] float chaseDistance = 8f;
 
         // String const
         private const string PLAYER_TAG = "Player";
@@ -48,6 +48,13 @@ namespace RPG.Control
             {
                 fighter.Cancel();
             }
+        }
+
+        // Called by Unity
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position, chaseDistance / 2);
         }
     }
 }

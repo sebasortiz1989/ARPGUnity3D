@@ -24,7 +24,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0bd6db95d0ee0469109bbcda2d47a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseDistance: 5
+  chaseDistance: 8
 --- !u!114 &4705383025165807618
 MonoBehaviour:
   m_ObjectHideFlags: 0
