@@ -17,6 +17,7 @@ namespace RPG.Movement
 
         // String const
         private const string SPEED_BLEND_VALUE = "fowardSpeed";
+        private const string PLAYER_TAG = "Player";
 
         // Initialize Variables
         float runSpeed = 5.662f;
@@ -43,37 +44,40 @@ namespace RPG.Movement
 
         private void ChangeWalkRunSpeed()
         {
-            // If R is toggled
-            if (!Input.GetKey(KeyCode.LeftControl))
+            if (gameObject.CompareTag(PLAYER_TAG))
             {
-                if (!walkOrRun)
+                // If R is toggled
+                if (!Input.GetKey(KeyCode.LeftControl))
                 {
-                    if (Input.GetKeyDown(KeyCode.R))
-                        rPressed = true;
-                }
-                else
-                {
-                    if (Input.GetKeyDown(KeyCode.R))
-                        rPressed = false;
+                    if (!walkOrRun)
+                    {
+                        if (Input.GetKeyDown(KeyCode.R))
+                            rPressed = true;
+                    }
+                    else
+                    {
+                        if (Input.GetKeyDown(KeyCode.R))
+                            rPressed = false;
+                    }
+
+                    if (rPressed)
+                        walkOrRun = true;
+                    else
+                        walkOrRun = false;
                 }
 
-                if (rPressed)
+                // If Control is pressed
+                if (Input.GetKeyDown(KeyCode.LeftControl))
                     walkOrRun = true;
-                else
+                else if (Input.GetKeyUp(KeyCode.LeftControl))
                     walkOrRun = false;
+
+                // Change speed
+                if (walkOrRun)
+                    playerNavMeshAgent.speed = runSpeed;
+                else
+                    playerNavMeshAgent.speed = walkSpeed;
             }
-
-            // If Control is pressed
-            if (Input.GetKeyDown(KeyCode.LeftControl))
-                walkOrRun = true;
-            else if (Input.GetKeyUp(KeyCode.LeftControl))
-                walkOrRun = false;
-
-            // Change speed
-            if (walkOrRun)
-                playerNavMeshAgent.speed = runSpeed;
-            else
-                playerNavMeshAgent.speed = walkSpeed;
         }
 
         private void UpdateAnimator()

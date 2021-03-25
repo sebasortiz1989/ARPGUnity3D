@@ -25,6 +25,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseDistance: 5
+--- !u!114 &4705383025165807618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3660232349789915059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9b926d8462f21d4fa41bc3cd2cf930d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2451088745151222792
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32,6 +44,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 82452334, guid: 9a90b5ee21363c24babeb0a6c4755b5f, type: 3}
+      propertyPath: m_Speed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1211404355269120935, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
         type: 3}
       propertyPath: m_RootOrder
@@ -90,7 +106,7 @@ PrefabInstance:
     - target: {fileID: 1211404355269120955, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
         type: 3}
       propertyPath: m_Name
-      value: Enemy
+      value: Enemy 1
       objectReference: {fileID: 0}
     - target: {fileID: 1211404355269120955, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
         type: 3}
@@ -110,7 +126,12 @@ PrefabInstance:
     - target: {fileID: 7743870870950096489, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7743870870950096489, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
+        type: 3}
+      propertyPath: weaponRange
+      value: 1.6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 82452333, guid: 9a90b5ee21363c24babeb0a6c4755b5f, type: 3}

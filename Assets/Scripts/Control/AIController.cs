@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RPG.Combat;
 
 namespace RPG.Control
 {
@@ -12,29 +13,40 @@ namespace RPG.Control
         // String const
         private const string PLAYER_TAG = "Player";
 
-        // Initialize Variables
+        // Cached reference
         GameObject player;
+        Fighter fighter;
+        Health health;
+
+        // Initialize Variables
         float distanceToPlayer;
 
         // Start is called before the first frame update
         void Start()
         {
             player = GameObject.FindWithTag(PLAYER_TAG);
+            fighter = GetComponent<Fighter>();
+            health = GetComponent<Health>();
         }
 
         // Update is called once per frame
         void Update()
         {
-            DistanceToPlayer();
+            AttackIfPlayerInRange();
         }
 
-        private void DistanceToPlayer()
+        private void AttackIfPlayerInRange()
         {
             distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-            if (distanceToPlayer <= chaseDistance)
+            if (distanceToPlayer <= chaseDistance && fighter.CanAttack(player))
             {
-                Debug.Log(this.name + " Starts chasing the " + player.name);
+                fighter.Attack(player);
             }
+            else
+            {
+                fighter.Cancel();
+            }
+            if (health.IsDead()) fighter.Cancel();
         }
     }
 }
