@@ -12,11 +12,13 @@ namespace RPG.Movement
         // Config
 
         // Cached Component References
-        NavMeshAgent playerNavMeshAgent;
-        Animator playerAnim;
+        NavMeshAgent navMeshAgent;
+        Animator anim;
+        Health health;
 
         // String const
         private const string SPEED_BLEND_VALUE = "fowardSpeed";
+        private const string PLAYER_TAG = "Player";
 
         // Initialize Variables
         float runSpeed = 5.662f;
@@ -29,58 +31,62 @@ namespace RPG.Movement
         // Start is called before the first frame update
         void Start()
         {
-            playerNavMeshAgent = GetComponent<NavMeshAgent>();
-            playerAnim = GetComponent<Animator>();
+            navMeshAgent = GetComponent<NavMeshAgent>();
+            anim = GetComponent<Animator>();
+            health = GetComponent<Health>();
         }
 
         // Update is called once per frame
         void Update()
         {
-
+            navMeshAgent.enabled = !health.IsDead();
             ChangeWalkRunSpeed();
             UpdateAnimator();
         }
 
         private void ChangeWalkRunSpeed()
         {
-            // If R is toggled
-            if (!Input.GetKey(KeyCode.LeftControl))
+            if (gameObject.CompareTag(PLAYER_TAG))
             {
-                if (!walkOrRun)
+                // If R is toggled
+                if (!Input.GetKey(KeyCode.LeftControl))
                 {
-                    if (Input.GetKeyDown(KeyCode.R))
-                        rPressed = true;
-                }
-                else
-                {
-                    if (Input.GetKeyDown(KeyCode.R))
-                        rPressed = false;
+                    if (!walkOrRun)
+                    {
+                        if (Input.GetKeyDown(KeyCode.R))
+                            rPressed = true;
+                    }
+                    else
+                    {
+                        if (Input.GetKeyDown(KeyCode.R))
+                            rPressed = false;
+                    }
+
+                    if (rPressed)
+                        walkOrRun = true;
+                    else
+                        walkOrRun = false;
                 }
 
-                if (rPressed)
+                // If Control is pressed
+                if (Input.GetKeyDown(KeyCode.LeftControl))
                     walkOrRun = true;
-                else
+                else if (Input.GetKeyUp(KeyCode.LeftControl))
                     walkOrRun = false;
+
+                // Change speed
+                if (walkOrRun)
+                    navMeshAgent.speed = runSpeed;
+                else
+                    navMeshAgent.speed = walkSpeed;
             }
-
-            // If Control is pressed
-            if (Input.GetKeyDown(KeyCode.LeftControl))
-                walkOrRun = true;
-            else if (Input.GetKeyUp(KeyCode.LeftControl))
-                walkOrRun = false;
-
-            // Change speed
-            if (walkOrRun)
-                playerNavMeshAgent.speed = runSpeed;
-            else
-                playerNavMeshAgent.speed = walkSpeed;
         }
 
         private void UpdateAnimator()
         {
             velocity = GetComponent<NavMeshAgent>().velocity;
             localVelocity = transform.InverseTransformDirection(velocity);
-            playerAnim.SetFloat(SPEED_BLEND_VALUE, Mathf.Abs(localVelocity.z));
+            anim.SetFloat(SPEED_BLEND_VALUE, Mathf.Abs(localVelocity.z));
         }
 
         public void StartMoveAction(Vector3 destination)
@@ -91,13 +97,13 @@ namespace RPG.Movement
 
         public void MoveTo(Vector3 destination)
         {
-            playerNavMeshAgent.destination = destination;
-            playerNavMeshAgent.isStopped = false;
+            navMeshAgent.destination = destination;
+            navMeshAgent.isStopped = false;
         }
 
         public void Cancel()
         {
-            playerNavMeshAgent.isStopped = true;
+            navMeshAgent.isStopped = true;
         }
     }
 }

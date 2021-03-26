@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.Combat
+namespace RPG.Core
 {
     public class Health : MonoBehaviour
     {
@@ -11,6 +11,7 @@ namespace RPG.Combat
 
         // Cached Component References
         Animator anim;
+        ActionScheduler actionScheduler;
 
         // String const
         private const string DIE_TRIGGER = "die";
@@ -22,6 +23,7 @@ namespace RPG.Combat
         void Start()
         {
             anim = GetComponent<Animator>();
+            actionScheduler = GetComponent<ActionScheduler>();
         }
 
         public void TakeDamage(float damage)
@@ -36,8 +38,10 @@ namespace RPG.Combat
 
         private void Die()
         {
+            if (isDead) return;
             isDead = true;
             anim.SetTrigger(DIE_TRIGGER);
+            actionScheduler.CancelCurrentAction();
         }
 
         public bool IsDead()

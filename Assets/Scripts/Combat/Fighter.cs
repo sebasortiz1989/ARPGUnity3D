@@ -22,7 +22,7 @@ namespace RPG.Combat
 
         // Initialize variables
         Health target;
-        float timeSinceLastAttack = 1f;
+        float timeSinceLastAttack = Mathf.Infinity;
 
         // Start is called before the first frame update
         void Start()
@@ -77,13 +77,6 @@ namespace RPG.Combat
 
             if (target != null) target.TakeDamage(weaponDamage);
         }
-
-        public void Attack(CombatTarget combatTarget)
-        {
-            GetComponent<ActionScheduler>().StartAction(this);
-            target = combatTarget.GetComponent<Health>();
-        }
-
         public void Cancel()
         {
             StopAttack();
@@ -96,12 +89,18 @@ namespace RPG.Combat
             anim.SetTrigger(STOP_ATTACK_TRIGGER);
         }
 
-        public bool CanAttack(CombatTarget combatTarget)
+        public bool CanAttack(GameObject combatTarget)
         {
             if (combatTarget == null) 
                 return false;
             Health targetToTest = combatTarget.GetComponent<Health>();
             return combatTarget != null && !targetToTest.IsDead();
+        }
+
+        public void Attack(GameObject combatTarget)
+        {
+            GetComponent<ActionScheduler>().StartAction(this);
+            target = combatTarget.GetComponent<Health>();
         }
     }
 }
