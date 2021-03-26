@@ -12,8 +12,10 @@ namespace RPG.Control
     public class AIController : MonoBehaviour
     {
         // Config
-        [SerializeField] float chaseDistance = 8f;
+        [SerializeField] float chaseDistance = 6f;
         [SerializeField] float timeToWaitSuspiciously = 6f;
+        [SerializeField] PatrolPath patrolPath;
+        [SerializeField] float waypointTolerance = 1.1f;
 
         // String const
         private const string PLAYER_TAG = "Player";
@@ -31,6 +33,8 @@ namespace RPG.Control
         Vector3 guardLocation;
         Quaternion guardRotation;
         float timeSinceLastSawPlayer = Mathf.Infinity;
+        int currentWaypointIndex = 0;
+        public float disttoway;
         
         // Start is called before the first frame update
         void Start()
@@ -66,20 +70,53 @@ namespace RPG.Control
             }
             else
             {
-                GuardBehaviour();
+                PatrolGuardBehaviour();
             }
 
             timeSinceLastSawPlayer += Time.deltaTime;
         }
 
-        private void GuardBehaviour()
+        private void PatrolGuardBehaviour()
         {
             fighter.Cancel();
-            mover.StartMoveAction(guardLocation);
-            if (navMeshAgent.velocity.magnitude < 0.05f && transform.rotation != guardRotation)
+
+            Vector3 nextPosition = guardLocation;
+
+            if (patrolPath != null)
             {
-                transform.rotation = guardRotation;
+                if (AtWaypoint())
+                {
+                    CycleWaypoint();
+                }
+                nextPosition = GetCurrentWaypoint();
             }
+            mover.StartMoveAction(nextPosition);
+
+            if (patrolPath == null)
+            {
+                if (navMeshAgent.velocity.magnitude < 0.05f && transform.rotation != guardRotation)
+                {
+                    transform.rotation = guardRotation;
+                }
+            }
+        }
+
+        private bool AtWaypoint()
+        {
+            float distanceToWaypoint = Vector3.Distance(transform.position, GetCurrentWaypoint());
+            disttoway = distanceToWaypoint;
+            return distanceToWaypoint < waypointTolerance;
+        }
+
+
+        private void CycleWaypoint()
+        {
+            currentWaypointIndex = patrolPath.GetNextIndex(currentWaypointIndex);
+        }
+
+        private Vector3 GetCurrentWaypoint()
+        {
+            return patrolPath.GetWaypoint(currentWaypointIndex);
         }
 
         private void SuspicionBehaviour()

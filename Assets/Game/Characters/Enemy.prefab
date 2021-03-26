@@ -24,7 +24,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0bd6db95d0ee0469109bbcda2d47a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseDistance: 8
+  chaseDistance: 6
+  timeToWaitSuspiciously: 6
 --- !u!114 &4705383025165807618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,7 +57,7 @@ PrefabInstance:
     - target: {fileID: 1211404355269120935, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.15529
+      value: 24.72
       objectReference: {fileID: 0}
     - target: {fileID: 1211404355269120935, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
         type: 3}
@@ -66,7 +67,7 @@ PrefabInstance:
     - target: {fileID: 1211404355269120935, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.54707
+      value: 11.93
       objectReference: {fileID: 0}
     - target: {fileID: 1211404355269120935, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
         type: 3}
@@ -106,7 +107,7 @@ PrefabInstance:
     - target: {fileID: 1211404355269120955, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
         type: 3}
       propertyPath: m_Name
-      value: Enemy 1
+      value: Enemy 4
       objectReference: {fileID: 0}
     - target: {fileID: 1211404355269120955, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
         type: 3}
