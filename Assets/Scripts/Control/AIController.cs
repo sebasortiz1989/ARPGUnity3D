@@ -14,6 +14,7 @@ namespace RPG.Control
         // Config
         [SerializeField] float chaseDistance = 6f;
         [SerializeField] float timeToWaitSuspiciously = 6f;
+        [SerializeField] float waypointDwellTime = 4f;
         [SerializeField] PatrolPath patrolPath;
         [SerializeField] float waypointTolerance = 1.1f;
 
@@ -33,8 +34,8 @@ namespace RPG.Control
         Vector3 guardLocation;
         Quaternion guardRotation;
         float timeSinceLastSawPlayer = Mathf.Infinity;
+        public float timeSinceWaypoint = Mathf.Infinity;
         int currentWaypointIndex = 0;
-        public float disttoway;
         
         // Start is called before the first frame update
         void Start()
@@ -60,8 +61,7 @@ namespace RPG.Control
         {
             distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
             if (distanceToPlayer <= chaseDistance && fighter.CanAttack(player))
-            {
-                timeSinceLastSawPlayer = 0;
+            {               
                 AttackBehaviour();
             }
             else if (timeSinceLastSawPlayer < timeToWaitSuspiciously)
@@ -73,7 +73,13 @@ namespace RPG.Control
                 PatrolGuardBehaviour();
             }
 
+            UpdateTimers();
+        }
+
+        private void UpdateTimers()
+        {
             timeSinceLastSawPlayer += Time.deltaTime;
+            timeSinceWaypoint += Time.deltaTime;
         }
 
         private void PatrolGuardBehaviour()
@@ -86,11 +92,14 @@ namespace RPG.Control
             {
                 if (AtWaypoint())
                 {
+                    timeSinceWaypoint = 0;
                     CycleWaypoint();
                 }
                 nextPosition = GetCurrentWaypoint();
             }
-            mover.StartMoveAction(nextPosition);
+
+            if (timeSinceWaypoint > waypointDwellTime)
+                mover.StartMoveAction(nextPosition);
 
             if (patrolPath == null)
             {
@@ -104,7 +113,6 @@ namespace RPG.Control
         private bool AtWaypoint()
         {
             float distanceToWaypoint = Vector3.Distance(transform.position, GetCurrentWaypoint());
-            disttoway = distanceToWaypoint;
             return distanceToWaypoint < waypointTolerance;
         }
 
@@ -126,6 +134,7 @@ namespace RPG.Control
 
         private void AttackBehaviour()
         {
+            timeSinceLastSawPlayer = 0;
             fighter.Attack(player);
         }
 

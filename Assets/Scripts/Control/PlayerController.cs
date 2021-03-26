@@ -58,7 +58,6 @@ namespace RPG.Control
             }
             else
             {
-                Debug.Log("Nothing to do");
                 return false;
             }
         }
