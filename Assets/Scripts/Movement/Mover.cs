@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using RPG.Core;
+using RPG.Control;
 
 namespace RPG.Movement
 {
@@ -15,14 +16,18 @@ namespace RPG.Movement
         NavMeshAgent navMeshAgent;
         Animator anim;
         Health health;
+        AIController aiController;
 
         // String const
         private const string SPEED_BLEND_VALUE = "fowardSpeed";
         private const string PLAYER_TAG = "Player";
+        private const string ENEMY_TAG = "Enemy";
 
         // Initialize Variables
         float runSpeed = 5.662f;
         float walkSpeed = 3f;
+        float enemyRunSpeed = 4f;
+        float enemyWalkSpeed = 2f;
         Vector3 velocity;
         Vector3 localVelocity;
         bool walkOrRun;
@@ -34,52 +39,67 @@ namespace RPG.Movement
             navMeshAgent = GetComponent<NavMeshAgent>();
             anim = GetComponent<Animator>();
             health = GetComponent<Health>();
+
+            if (gameObject.CompareTag(ENEMY_TAG))
+                aiController = GetComponent<AIController>();
         }
 
         // Update is called once per frame
         void Update()
         {
             navMeshAgent.enabled = !health.IsDead();
-            ChangeWalkRunSpeed();
+            if (health.IsDead()) return;
+
+            if (gameObject.CompareTag(PLAYER_TAG))
+                ChangePlayerWalkRunSpeed();
+
+            if (gameObject.CompareTag(ENEMY_TAG))
+                ChangeEnemyWalkRunSpeed();
+
             UpdateAnimator();
         }
 
-        private void ChangeWalkRunSpeed()
+        private void ChangeEnemyWalkRunSpeed()
         {
-            if (gameObject.CompareTag(PLAYER_TAG))
-            {
-                // If R is toggled
-                if (!Input.GetKey(KeyCode.LeftControl))
-                {
-                    if (!walkOrRun)
-                    {
-                        if (Input.GetKeyDown(KeyCode.R))
-                            rPressed = true;
-                    }
-                    else
-                    {
-                        if (Input.GetKeyDown(KeyCode.R))
-                            rPressed = false;
-                    }
+            if (aiController.AttackIfPlayerInRange())
+                navMeshAgent.speed = enemyRunSpeed;
+            else
+                navMeshAgent.speed = enemyWalkSpeed;
+        }
 
-                    if (rPressed)
-                        walkOrRun = true;
-                    else
-                        walkOrRun = false;
+        private void ChangePlayerWalkRunSpeed()
+        {
+            // If Control is pressed
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+                walkOrRun = true;
+            else if (Input.GetKeyUp(KeyCode.LeftControl))
+                walkOrRun = false;
+
+            // If R is toggled
+            if (!Input.GetKey(KeyCode.LeftControl))
+            {
+                if (!walkOrRun)
+                {
+                    if (Input.GetKeyDown(KeyCode.R))
+                        rPressed = true;
+                }
+                else
+                {
+                    if (Input.GetKeyDown(KeyCode.R))
+                        rPressed = false;
                 }
 
-                // If Control is pressed
-                if (Input.GetKeyDown(KeyCode.LeftControl))
+                if (rPressed)
                     walkOrRun = true;
-                else if (Input.GetKeyUp(KeyCode.LeftControl))
-                    walkOrRun = false;
-
-                // Change speed
-                if (walkOrRun)
-                    navMeshAgent.speed = runSpeed;
                 else
-                    navMeshAgent.speed = walkSpeed;
+                    walkOrRun = false;
             }
+
+            // Change speed
+            if (walkOrRun)
+                navMeshAgent.speed = runSpeed;
+            else
+                navMeshAgent.speed = walkSpeed;
         }
 
         private void UpdateAnimator()

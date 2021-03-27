@@ -33,7 +33,7 @@ namespace RPG.Control
         float distanceToPlayer;
         Vector3 guardLocation;
         Quaternion guardRotation;
-        float timeSinceLastSawPlayer = Mathf.Infinity;
+        public float timeSinceLastSawPlayer = Mathf.Infinity;
         public float timeSinceWaypoint = Mathf.Infinity;
         int currentWaypointIndex = 0;
         
@@ -57,12 +57,13 @@ namespace RPG.Control
             AttackIfPlayerInRange();
         }
 
-        private void AttackIfPlayerInRange()
-        {
+        public bool AttackIfPlayerInRange()
+        {           
             distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
             if (distanceToPlayer <= chaseDistance && fighter.CanAttack(player))
             {               
                 AttackBehaviour();
+                return true;
             }
             else if (timeSinceLastSawPlayer < timeToWaitSuspiciously)
             {
@@ -72,8 +73,9 @@ namespace RPG.Control
             {
                 PatrolGuardBehaviour();
             }
-
-            UpdateTimers();
+            if (navMeshAgent.velocity.magnitude < 0.1f)
+                UpdateTimers();
+            return false;
         }
 
         private void UpdateTimers()

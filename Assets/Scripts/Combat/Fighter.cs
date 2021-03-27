@@ -21,7 +21,7 @@ namespace RPG.Combat
         private const string STOP_ATTACK_TRIGGER = "stopAttack"; 
 
         // Initialize variables
-        Health target;
+        public Health target;
         float timeSinceLastAttack = Mathf.Infinity;
 
         // Start is called before the first frame update
@@ -81,6 +81,7 @@ namespace RPG.Combat
         {
             StopAttack();
             target = null;
+            GetComponent<Mover>().Cancel();
         }
 
         private void StopAttack()
