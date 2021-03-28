@@ -12,6 +12,8 @@ namespace RPG.Combat
         [SerializeField] float weaponRange = 2f;
         [SerializeField] [Range(0, 3)] float timeBetweenAttacks = 1f;
         [SerializeField] float weaponDamage = 3;
+        [SerializeField] GameObject weaponPrefab = null;
+        [SerializeField] Transform handTransform = null;
 
         // Cached Component References
         Animator anim;
@@ -21,13 +23,14 @@ namespace RPG.Combat
         private const string STOP_ATTACK_TRIGGER = "stopAttack"; 
 
         // Initialize variables
-        public Health target;
+        Health target;
         float timeSinceLastAttack = Mathf.Infinity;
 
         // Start is called before the first frame update
         void Start()
         {
             anim = GetComponent<Animator>();
+            SpawnWeapon();
         }
 
         // Update is called once per frame
@@ -102,6 +105,12 @@ namespace RPG.Combat
         {
             GetComponent<ActionScheduler>().StartAction(this);
             target = combatTarget.GetComponent<Health>();
+        }
+
+        private void SpawnWeapon()
+        {
+            if (weaponPrefab != null)
+                Instantiate(weaponPrefab, handTransform);
         }
     }
 }
