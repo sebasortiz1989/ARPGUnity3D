@@ -20,18 +20,24 @@ namespace RPG.SceneManagement
         // Start is called before the first frame update
         void Start()
         {
+            
             sceneIndex = SceneManager.GetActiveScene().buildIndex;
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag(PLAYER_TAG))
-                SceneManager.LoadScene(sceneToLoad);
+            {
+                StartCoroutine(Transition());
+            }             
         }
 
-        private void LoadNextScene()
+        private IEnumerator Transition()
         {
-            SceneManager.LoadScene(sceneIndex + 1);
+            DontDestroyOnLoad(gameObject);
+            yield return SceneManager.LoadSceneAsync(sceneToLoad);
+            print("Scene Loaded");
+            Destroy(gameObject);
         }
     }
 }
