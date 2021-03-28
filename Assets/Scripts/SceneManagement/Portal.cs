@@ -32,6 +32,7 @@ namespace RPG.SceneManagement
         void Start()
         {    
             sceneIndex = SceneManager.GetActiveScene().buildIndex;
+            
         }
 
         private void OnTriggerEnter(Collider other)
@@ -54,10 +55,19 @@ namespace RPG.SceneManagement
 
             Fader fader = FindObjectOfType<Fader>();
             yield return fader.FadeOut(fadeOutTime);
+
+            SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();
+            savingWrapper.Save();
+
             yield return SceneManager.LoadSceneAsync(sceneToLoad); //Load scene asyncronous in the background
+
+
+            savingWrapper.Load();
 
             Portal otherPortal = GetOtherPortal();
             UpdateThePlayer(otherPortal);
+
+            savingWrapper.Save();
 
             yield return new WaitForSeconds(fadeWaitTime);
             yield return fader.FadeIn(fadeInTime);

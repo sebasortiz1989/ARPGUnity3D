@@ -5,13 +5,12 @@ using UnityEngine;
 using UnityEngine.AI;
 using RPG.Core;
 using RPG.Control;
+using RPG.Saving;
 
 namespace RPG.Movement
 {
-    public class Mover : MonoBehaviour, IAction
+    public class Mover : MonoBehaviour, IAction, ISaveable
     {
-        // Config
-
         // Cached Component References
         NavMeshAgent navMeshAgent;
         Animator anim;
@@ -31,7 +30,7 @@ namespace RPG.Movement
         Vector3 velocity;
         Vector3 localVelocity;
         bool walkOrRun;
-        bool rPressed;
+        private static bool rPressed;
 
         // Start is called before the first frame update
         void Start()
@@ -124,6 +123,24 @@ namespace RPG.Movement
         public void Cancel()
         {
             navMeshAgent.isStopped = true;
+        }
+
+        [System.Serializable]
+        struct MoverSaveData
+        {
+            public SerializableVector3 position;
+            public SerializableVector3 rotation;
+        }
+
+        public object CaptureState()
+        {
+            return new SerializableVector3(transform.position);
+        }
+
+        public void RestoreState(object state)
+        {
+            SerializableVector3 position = (SerializableVector3)state;
+            GetComponent<NavMeshAgent>().Warp(position.ToVector());
         }
     }
 }
