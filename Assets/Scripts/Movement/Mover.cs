@@ -32,7 +32,7 @@ namespace RPG.Movement
         Vector3 velocity;
         Vector3 localVelocity;
         bool walkOrRun;
-        bool rPressed;
+        static bool rPressed;
 
         // Start is called before the first frame update
         void Start()
@@ -127,23 +127,28 @@ namespace RPG.Movement
             navMeshAgent.isStopped = true;
         }
 
+        [System.Serializable]
+        struct MoverSaveData
+        {
+            public SerializableVector3 position;
+            public SerializableVector3 rotation;
+        }
+
         public object CaptureState()
         {
-            Dictionary<string, object> data = new Dictionary<string, object>();
-            data["position"] = new SerializableVector3(transform.position);
-            data["rotation"] = new SerializableVector3(transform.eulerAngles);
-            data["rPressed"] = rPressed;
+            MoverSaveData data = new MoverSaveData();
+            data.position = new SerializableVector3(transform.position);
+            data.rotation = new SerializableVector3(transform.eulerAngles);
             return data;
         }
 
         public void RestoreState(object state)
         {
-            Dictionary<string, object> data = (Dictionary<string, object>)state;
+            MoverSaveData data = (MoverSaveData)state;
             GetComponent<NavMeshAgent>().enabled = false;
-            transform.position = ((SerializableVector3)data["position"]).ToVector();
-            transform.eulerAngles = ((SerializableVector3)data["rotation"]).ToVector();
+            transform.position = data.position.ToVector();
+            transform.eulerAngles = data.rotation.ToVector();
             GetComponent<NavMeshAgent>().enabled = true;
-            rPressed = (bool)data["rPressed"];
         }
     }
 }
