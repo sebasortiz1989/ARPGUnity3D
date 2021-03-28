@@ -8,7 +8,19 @@ namespace RPG.SceneManagement
 {
     public class SavingWrapper : MonoBehaviour
     {
+        // Config
+        [SerializeField] float fadeInTime = 0.2f;
+        
+        // Const string
         private const string DEFAULT_SAVE_FILE = "save";
+
+        IEnumerator Start()
+        {
+            Fader fader = FindObjectOfType<Fader>();
+            fader.FadeOutImmediate();
+            yield return GetComponent<SavingSystem>().LoadLastScene(DEFAULT_SAVE_FILE);
+            yield return fader.FadeIn(fadeInTime);
+        }
 
         void Update()
         {

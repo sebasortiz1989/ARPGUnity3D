@@ -32,7 +32,7 @@ namespace RPG.Movement
         Vector3 velocity;
         Vector3 localVelocity;
         bool walkOrRun;
-        bool rPressed;
+        private static bool rPressed;
 
         // Start is called before the first frame update
         void Start()

@@ -10,22 +10,12 @@ namespace RPG.Core
         // Config
         [SerializeField] float healthPoints = 100f;
 
-        // Cached Component References
-        Animator anim;
-        ActionScheduler actionScheduler;
-
         // String const
         private const string DIE_TRIGGER = "die";
 
         // Initialize Variables
         bool isDead;
 
-        // Start is called before the first frame update
-        void Start()
-        {
-            anim = GetComponent<Animator>();
-            actionScheduler = GetComponent<ActionScheduler>();
-        }
 
         public void TakeDamage(float damage)
         {
@@ -41,8 +31,8 @@ namespace RPG.Core
         {
             if (isDead) return;
             isDead = true;
-            anim.SetTrigger(DIE_TRIGGER);
-            actionScheduler.CancelCurrentAction();
+            GetComponent<Animator>().SetTrigger(DIE_TRIGGER);
+            GetComponent<ActionScheduler>().CancelCurrentAction();
         }
 
         public bool IsDead()

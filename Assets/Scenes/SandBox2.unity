@@ -883,6 +883,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1537241031, guid: e49c0481bd27e3a44a60c8830ca9406f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537241031, guid: e49c0481bd27e3a44a60c8830ca9406f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.03
+      objectReference: {fileID: 0}
     - target: {fileID: 135741260694225831, guid: e49c0481bd27e3a44a60c8830ca9406f,
         type: 3}
       propertyPath: fadeOutTime
@@ -916,7 +924,7 @@ PrefabInstance:
     - target: {fileID: 8901710466909297345, guid: e49c0481bd27e3a44a60c8830ca9406f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -47.16
+      value: -49.13
       objectReference: {fileID: 0}
     - target: {fileID: 8901710466909297345, guid: e49c0481bd27e3a44a60c8830ca9406f,
         type: 3}
@@ -1552,7 +1560,7 @@ PrefabInstance:
     - target: {fileID: 3085699937519637186, guid: 27b47708e42a78b4a8592ff0ff76e1de,
         type: 3}
       propertyPath: uniqueIdentifier
-      value: a6ed526d-8d86-4c7a-a3e9-d1900108204b
+      value: player
       objectReference: {fileID: 0}
     - target: {fileID: 7548291619037207908, guid: 27b47708e42a78b4a8592ff0ff76e1de,
         type: 3}
