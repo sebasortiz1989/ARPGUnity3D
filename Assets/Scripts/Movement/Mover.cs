@@ -11,8 +11,6 @@ namespace RPG.Movement
 {
     public class Mover : MonoBehaviour, IAction, ISaveable
     {
-        // Config
-
         // Cached Component References
         NavMeshAgent navMeshAgent;
         Animator anim;
@@ -32,7 +30,7 @@ namespace RPG.Movement
         Vector3 velocity;
         Vector3 localVelocity;
         bool walkOrRun;
-        static bool rPressed;
+        private static bool rPressed;
 
         // Start is called before the first frame update
         void Start()
@@ -136,19 +134,13 @@ namespace RPG.Movement
 
         public object CaptureState()
         {
-            MoverSaveData data = new MoverSaveData();
-            data.position = new SerializableVector3(transform.position);
-            data.rotation = new SerializableVector3(transform.eulerAngles);
-            return data;
+            return new SerializableVector3(transform.position);
         }
 
         public void RestoreState(object state)
         {
-            MoverSaveData data = (MoverSaveData)state;
-            GetComponent<NavMeshAgent>().enabled = false;
-            transform.position = data.position.ToVector();
-            transform.eulerAngles = data.rotation.ToVector();
-            GetComponent<NavMeshAgent>().enabled = true;
+            SerializableVector3 position = (SerializableVector3)state;
+            GetComponent<NavMeshAgent>().Warp(position.ToVector());
         }
     }
 }
