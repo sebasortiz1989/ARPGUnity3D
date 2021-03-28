@@ -18,6 +18,9 @@ namespace RPG.SceneManagement
         [SerializeField] int sceneToLoad;
         [SerializeField] Transform spawnPoint;
         [SerializeField] DestinationIdentifier destination;
+        [SerializeField] float fadeOutTime = 1.5f;
+        [SerializeField] float fadeInTime = 1f;
+        [SerializeField] float fadeWaitTime = 0.5f;
 
         // String const
         private const string PLAYER_TAG = "Player";
@@ -27,8 +30,7 @@ namespace RPG.SceneManagement
 
         // Start is called before the first frame update
         void Start()
-        {
-            
+        {    
             sceneIndex = SceneManager.GetActiveScene().buildIndex;
         }
 
@@ -49,10 +51,16 @@ namespace RPG.SceneManagement
             }
 
             DontDestroyOnLoad(gameObject);
-            yield return SceneManager.LoadSceneAsync(sceneToLoad);
+
+            Fader fader = FindObjectOfType<Fader>();
+            yield return fader.FadeOut(fadeOutTime);
+            yield return SceneManager.LoadSceneAsync(sceneToLoad); //Load scene asyncronous in the background
 
             Portal otherPortal = GetOtherPortal();
             UpdateThePlayer(otherPortal);
+
+            yield return new WaitForSeconds(fadeWaitTime);
+            yield return fader.FadeIn(fadeInTime);
 
             Destroy(gameObject);
         }
