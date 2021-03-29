@@ -97,7 +97,7 @@ PrefabInstance:
     - target: {fileID: 7743870870950096489, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
         type: 3}
       propertyPath: weaponRange
-      value: 1.6
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 7743870870950096489, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
         type: 3}
@@ -115,6 +115,12 @@ PrefabInstance:
       propertyPath: handTransform
       value: 
       objectReference: {fileID: 8266855454911003053}
+    - target: {fileID: 7743870870950096489, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
+        type: 3}
+      propertyPath: weaponOverride
+      value: 
+      objectReference: {fileID: 22100000, guid: 21e18ee3479a7da4face2f32cd8683d1,
+        type: 2}
     - target: {fileID: 7743870870950096489, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
         type: 3}
       propertyPath: timeBetweenAttacks

@@ -7874,6 +7874,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.x
       value: 0.07938111
       objectReference: {fileID: 0}
+    - target: {fileID: 8969236408200466937, guid: 27b47708e42a78b4a8592ff0ff76e1de,
+        type: 3}
+      propertyPath: weaponRange
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27b47708e42a78b4a8592ff0ff76e1de, type: 3}
 --- !u!4 &5419238295741757144

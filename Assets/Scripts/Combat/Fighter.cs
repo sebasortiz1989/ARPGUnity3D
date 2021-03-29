@@ -14,6 +14,7 @@ namespace RPG.Combat
         [SerializeField] float weaponDamage = 3;
         [SerializeField] GameObject weaponPrefab = null;
         [SerializeField] Transform handTransform = null;
+        [SerializeField] AnimatorOverrideController weaponOverride = null;
 
         // Cached Component References
         Animator anim;
@@ -110,7 +111,10 @@ namespace RPG.Combat
         private void SpawnWeapon()
         {
             if (weaponPrefab != null)
+            {
                 Instantiate(weaponPrefab, handTransform);
+                anim.runtimeAnimatorController = weaponOverride;
+            }
         }
     }
 }
