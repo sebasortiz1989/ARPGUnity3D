@@ -26,6 +26,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaseDistance: 6
   timeToWaitSuspiciously: 6
+  waypointDwellTime: 4
+  patrolPath: {fileID: 0}
+  waypointTolerance: 1.1
+  timeSinceLastSawPlayer: Infinity
+  timeSinceWaypoint: Infinity
 --- !u!114 &4705383025165807618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,7 +112,7 @@ PrefabInstance:
     - target: {fileID: 1211404355269120955, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
         type: 3}
       propertyPath: m_Name
-      value: Enemy 4
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 1211404355269120955, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
         type: 3}
@@ -126,6 +131,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7743870870950096489, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
         type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 6bebe6be30dcd904faca6a58e8191f77,
+        type: 2}
+    - target: {fileID: 7743870870950096489, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
+        type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -134,6 +145,11 @@ PrefabInstance:
       propertyPath: weaponRange
       value: 1.6
       objectReference: {fileID: 0}
+    - target: {fileID: 7743870870950096489, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
+        type: 3}
+      propertyPath: handTransform
+      value: 
+      objectReference: {fileID: 6909290382083347219}
     m_RemovedComponents:
     - {fileID: 82452333, guid: 9a90b5ee21363c24babeb0a6c4755b5f, type: 3}
     - {fileID: 5640839475204974391, guid: 9a90b5ee21363c24babeb0a6c4755b5f, type: 3}
@@ -212,3 +228,9 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 3f6fc0cf5e5d31c458bc74ede87cb8ae, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
+--- !u!4 &6909290382083347219 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 461188, guid: 679ff741e12a7e740819ede24a7000b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 6909290382083676823}
+  m_PrefabAsset: {fileID: 0}

@@ -9,12 +9,8 @@ namespace RPG.Combat
     public class Fighter : MonoBehaviour, IAction
     {
         // Config
-        [SerializeField] float weaponRange = 2f;
-        [SerializeField] [Range(0, 3)] float timeBetweenAttacks = 1f;
-        [SerializeField] float weaponDamage = 3;
-        [SerializeField] GameObject weaponPrefab = null;
         [SerializeField] Transform handTransform = null;
-        [SerializeField] AnimatorOverrideController weaponOverride = null;
+        [SerializeField] Weapon weapon = null;
 
         // Cached Component References
         Animator anim;
@@ -46,7 +42,7 @@ namespace RPG.Combat
             if (target != null && !target.IsDead())
             {
                 GetComponent<Mover>().MoveTo(target.transform.position);
-                bool inRange = Vector3.Distance(transform.position, target.transform.position) < weaponRange;
+                bool inRange = Vector3.Distance(transform.position, target.transform.position) < weapon.range;
                 if (inRange)
                 {
                     GetComponent<Mover>().Cancel();
@@ -58,7 +54,7 @@ namespace RPG.Combat
         private void AttackBehaviour()
         {
             transform.LookAt(target.transform);
-            if (timeSinceLastAttack >= timeBetweenAttacks)
+            if (timeSinceLastAttack >= weapon.timeBetweenAttacks)
             {
                 // This will trigger the Hit() event
                 TriggetAttack();
@@ -79,7 +75,7 @@ namespace RPG.Combat
             //playerAnim.ResetTrigger(ATTACK_TRIGGER);
             //Cancel();
 
-            if (target != null) target.TakeDamage(weaponDamage);
+            if (target != null) target.TakeDamage(weapon.damage);
         }
         public void Cancel()
         {
@@ -110,10 +106,13 @@ namespace RPG.Combat
 
         private void SpawnWeapon()
         {
-            if (weaponPrefab != null)
+            if (weapon != null)
             {
-                Instantiate(weaponPrefab, handTransform);
-                anim.runtimeAnimatorController = weaponOverride;
+                weapon.Spawn(handTransform, anim);
+            }
+            else
+            {
+                Debug.LogError("No weapon equipped in one or some of the characters");
             }
         }
     }
