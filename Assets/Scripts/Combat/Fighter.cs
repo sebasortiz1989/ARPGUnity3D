@@ -10,7 +10,7 @@ namespace RPG.Combat
     {
         // Config
         [SerializeField] Transform handTransform = null;
-        [SerializeField] Weapon weapon = null;
+        [SerializeField] Weapon defaultWeapon = null;
 
         // Cached Component References
         Animator anim;
@@ -22,12 +22,13 @@ namespace RPG.Combat
         // Initialize variables
         Health target;
         float timeSinceLastAttack = Mathf.Infinity;
+        Weapon currentWeapon = null;
 
         // Start is called before the first frame update
         void Start()
         {
             anim = GetComponent<Animator>();
-            SpawnWeapon();
+            EquipWeapon(defaultWeapon);
         }
 
         // Update is called once per frame
@@ -42,7 +43,7 @@ namespace RPG.Combat
             if (target != null && !target.IsDead())
             {
                 GetComponent<Mover>().MoveTo(target.transform.position);
-                bool inRange = Vector3.Distance(transform.position, target.transform.position) < weapon.GetRange();
+                bool inRange = Vector3.Distance(transform.position, target.transform.position) < currentWeapon.GetRange();
                 if (inRange)
                 {
                     GetComponent<Mover>().Cancel();
@@ -54,7 +55,7 @@ namespace RPG.Combat
         private void AttackBehaviour()
         {
             transform.LookAt(target.transform);
-            if (timeSinceLastAttack >= weapon.GetTimeBetweenAttacks())
+            if (timeSinceLastAttack >= currentWeapon.GetTimeBetweenAttacks())
             {
                 // This will trigger the Hit() event
                 TriggetAttack();
@@ -71,7 +72,7 @@ namespace RPG.Combat
         // Animation Event
         public void Hit()
         {
-            if (target != null) target.TakeDamage(weapon.GetDamage());
+            if (target != null) target.TakeDamage(currentWeapon.GetDamage());
         }
         public void Cancel()
         {
@@ -100,16 +101,10 @@ namespace RPG.Combat
             target = combatTarget.GetComponent<Health>();
         }
 
-        private void SpawnWeapon()
+        public void EquipWeapon(Weapon weapon)
         {
-            if (weapon != null)
-            {
-                weapon.Spawn(handTransform, anim);
-            }
-            else
-            {
-                Debug.LogError("No weapon equipped in one or some of the characters");
-            }
+            currentWeapon = weapon;
+            weapon.Spawn(handTransform, anim);
         }
     }
 }
