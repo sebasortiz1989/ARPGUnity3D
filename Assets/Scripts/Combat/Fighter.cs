@@ -42,7 +42,7 @@ namespace RPG.Combat
             if (target != null && !target.IsDead())
             {
                 GetComponent<Mover>().MoveTo(target.transform.position);
-                bool inRange = Vector3.Distance(transform.position, target.transform.position) < weapon.range;
+                bool inRange = Vector3.Distance(transform.position, target.transform.position) < weapon.GetRange();
                 if (inRange)
                 {
                     GetComponent<Mover>().Cancel();
@@ -54,7 +54,7 @@ namespace RPG.Combat
         private void AttackBehaviour()
         {
             transform.LookAt(target.transform);
-            if (timeSinceLastAttack >= weapon.timeBetweenAttacks)
+            if (timeSinceLastAttack >= weapon.GetTimeBetweenAttacks())
             {
                 // This will trigger the Hit() event
                 TriggetAttack();
@@ -71,11 +71,7 @@ namespace RPG.Combat
         // Animation Event
         public void Hit()
         {
-            // This makes to only attack once
-            //playerAnim.ResetTrigger(ATTACK_TRIGGER);
-            //Cancel();
-
-            if (target != null) target.TakeDamage(weapon.damage);
+            if (target != null) target.TakeDamage(weapon.GetDamage());
         }
         public void Cancel()
         {
