@@ -9,7 +9,8 @@ namespace RPG.Combat
     public class Fighter : MonoBehaviour, IAction
     {
         // Config
-        [SerializeField] Transform handTransform = null;
+        [SerializeField] Transform rightHandTransform = null;
+        [SerializeField] Transform leftHandTransform = null;
         [SerializeField] Weapon defaultWeapon = null;
 
         // Cached Component References
@@ -104,7 +105,7 @@ namespace RPG.Combat
         public void EquipWeapon(Weapon weapon)
         {
             currentWeapon = weapon;
-            weapon.Spawn(handTransform, anim);
+            weapon.Spawn(rightHandTransform, leftHandTransform ,anim);
         }
     }
 }

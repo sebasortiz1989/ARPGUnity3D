@@ -16,5 +16,6 @@ MonoBehaviour:
     type: 3}
   weaponOverride: {fileID: 22100000, guid: 21e18ee3479a7da4face2f32cd8683d1, type: 2}
   range: 2.1
-  timeBetweenAttacks: 1.5
+  timeBetweenAttacks: 1.4
   damage: 15
+  isRightHanded: 1
