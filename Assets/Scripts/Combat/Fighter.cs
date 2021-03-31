@@ -73,8 +73,19 @@ namespace RPG.Combat
         // Animation Event
         public void Hit()
         {
-            if (target != null) target.TakeDamage(currentWeapon.GetDamage());
+            if (target != null)
+            {
+                if (currentWeapon.HasProjectile())
+                    currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target);
+                else
+                    target.TakeDamage(currentWeapon.GetDamage());
+            }       
         }
+        void Shoot()
+        {
+            Hit();
+        }
+
         public void Cancel()
         {
             StopAttack();
