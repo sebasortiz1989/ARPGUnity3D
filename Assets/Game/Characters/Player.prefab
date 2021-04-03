@@ -210,12 +210,12 @@ PrefabInstance:
         type: 3}
       propertyPath: leftHandTransform
       value: 
-      objectReference: {fileID: 1430131028709949167}
+      objectReference: {fileID: 1424963410525126909}
     - target: {fileID: 7743870870950096489, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
         type: 3}
       propertyPath: rightHandTransform
       value: 
-      objectReference: {fileID: 1424963410525126909}
+      objectReference: {fileID: 1430131028709949167}
     - target: {fileID: 7743870870950096489, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
         type: 3}
       propertyPath: timeBetweenAttacks
