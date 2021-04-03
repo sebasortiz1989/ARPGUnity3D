@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14d7c4d01e2bd1e40a46cc41a29ef955, type: 3}
-  m_Name: Bow
+  m_Name: Bow 4 Colors
   m_EditorClassIdentifier: 
   weaponPrefab: {fileID: 6550865634509223079, guid: e0e79378c8e0eb54ba6216565e11bc9d,
     type: 3}
   weaponOverride: {fileID: 22100000, guid: 4af8c48340eea634ebce6217447bbc01, type: 2}
   range: 12
   timeBetweenAttacks: 1
-  damage: 6
+  damage: 5
   isRightHanded: 0
-  projectile: {fileID: 7199446977461691413, guid: 825ed424922e5af43b9bcd8ec332c810,
+  projectile: {fileID: 467363254620997063, guid: b6338fd2566c0a5439a4640c9cd5b288,
     type: 3}

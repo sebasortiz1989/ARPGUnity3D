@@ -25,8 +25,8 @@ namespace RPG.Movement
         // Initialize Variables
         float runSpeed = 5.662f;
         float walkSpeed = 3f;
-        float enemyRunSpeed = 4f;
-        float enemyWalkSpeed = 2f;
+        [SerializeField] float enemyRunSpeed = 4f;
+        [SerializeField] float enemyWalkSpeed = 2f;
         Vector3 velocity;
         Vector3 localVelocity;
         bool walkOrRun;
