@@ -9,7 +9,8 @@ namespace RPG.Combat
     public class Projectile : MonoBehaviour
     {
         // Config
-        [SerializeField] float arrowSpeed = 1f;
+        [SerializeField] float arrowSpeed = 15f;
+        [SerializeField] bool isHoming;
 
         // String const
         private const string ENEMY_TAG = "Enemy";
@@ -18,11 +19,20 @@ namespace RPG.Combat
         float damage = 0;
         Health target;
 
+        private void Start()
+        {
+            transform.LookAt(GetAimLocation());
+            Destroy(gameObject, 5f);
+        }
+
         // Update is called once per frame
         void Update()
         {
             if (target == null) { return; }
-            transform.LookAt(GetAimLocation());
+
+            if (isHoming && !target.IsDead())
+                transform.LookAt(GetAimLocation());
+
             transform.Translate(Vector3.forward * arrowSpeed * Time.deltaTime);
         }
 
@@ -37,11 +47,13 @@ namespace RPG.Combat
             CapsuleCollider targetCapsule = target.GetComponent<CapsuleCollider>();
             if (targetCapsule == null) return target.transform.position;
 
-            return target.transform.position + Vector3.up * 1.25f;
+            return target.transform.position + Vector3.up;
         }
 
         private void OnTriggerEnter(Collider other)
         {
+            if (target.IsDead()) return;
+
             if (other.GetComponent<Health>() == target || other.CompareTag(ENEMY_TAG))
             {
                 target.TakeDamage(damage);
