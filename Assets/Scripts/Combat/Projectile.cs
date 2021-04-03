@@ -11,6 +11,7 @@ namespace RPG.Combat
         // Config
         [SerializeField] float arrowSpeed = 15f;
         [SerializeField] bool isHoming;
+        [SerializeField] GameObject hitEffect = null;
 
         // String const
         private const string ENEMY_TAG = "Enemy";
@@ -57,6 +58,8 @@ namespace RPG.Combat
             if (other.GetComponent<Health>() == target || other.CompareTag(ENEMY_TAG))
             {
                 target.TakeDamage(damage);
+                if (hitEffect != null)
+                    Instantiate(hitEffect, other.transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
         }

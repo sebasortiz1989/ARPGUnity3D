@@ -9707,6 +9707,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowSpeed: 8
   isHoming: 1
+  hitEffect: {fileID: 2302457091093092515, guid: 69d1b1037536b504884c93bb73d662db,
+    type: 3}
 --- !u!135 &5409669486610392457
 SphereCollider:
   m_ObjectHideFlags: 0
