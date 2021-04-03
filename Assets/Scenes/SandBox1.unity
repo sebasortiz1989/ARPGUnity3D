@@ -5934,6 +5934,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1972886194}
     m_Modifications:
+    - target: {fileID: 455287289869408841, guid: 690da8e0c67effe4185686361fe4fb9d,
+        type: 3}
+      propertyPath: healthPoints
+      value: 2000
+      objectReference: {fileID: 0}
     - target: {fileID: 2294723639478352218, guid: 690da8e0c67effe4185686361fe4fb9d,
         type: 3}
       propertyPath: uniqueIdentifier
