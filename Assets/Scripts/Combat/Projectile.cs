@@ -4,30 +4,49 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Core;
 
-public class Projectile : MonoBehaviour
+namespace RPG.Combat
 {
-    [SerializeField] float arrowSpeed = 1f;
-    
-    Health target;
-
-    // Update is called once per frame
-    void Update()
+    public class Projectile : MonoBehaviour
     {
-        if (target == null) { return; }
-        transform.LookAt(GetAimLocation());
-        transform.Translate(Vector3.forward * arrowSpeed * Time.deltaTime);
-    }
+        // Config
+        [SerializeField] float arrowSpeed = 1f;
 
-    public void SetTarget(Health target)
-    {
-        this.target = target;
-    }
+        // String const
+        private const string ENEMY_TAG = "Enemy";
 
-    private Vector3 GetAimLocation()
-    {
-        CapsuleCollider targetCapsule = target.GetComponent<CapsuleCollider>();
-        if (targetCapsule == null) return target.transform.position;
+        // Initialize variables
+        float damage = 0;
+        Health target;
 
-        return target.transform.position + Vector3.up * 1.25f ;
+        // Update is called once per frame
+        void Update()
+        {
+            if (target == null) { return; }
+            transform.LookAt(GetAimLocation());
+            transform.Translate(Vector3.forward * arrowSpeed * Time.deltaTime);
+        }
+
+        public void SetTarget(Health target, float damage)
+        {
+            this.target = target;
+            this.damage = damage;
+        }
+
+        private Vector3 GetAimLocation()
+        {
+            CapsuleCollider targetCapsule = target.GetComponent<CapsuleCollider>();
+            if (targetCapsule == null) return target.transform.position;
+
+            return target.transform.position + Vector3.up * 1.25f;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.GetComponent<Health>() == target || other.CompareTag(ENEMY_TAG))
+            {
+                target.TakeDamage(damage);
+                Destroy(gameObject);
+            }
+        }
     }
 }
