@@ -159,6 +159,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7199446977461691413, guid: 825ed424922e5af43b9bcd8ec332c810,
         type: 3}
+      propertyPath: arrowSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7199446977461691413, guid: 825ed424922e5af43b9bcd8ec332c810,
+        type: 3}
       propertyPath: makeProjectileHoming
       value: 0
       objectReference: {fileID: 0}
