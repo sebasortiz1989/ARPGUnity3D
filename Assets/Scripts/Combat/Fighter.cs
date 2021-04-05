@@ -12,6 +12,7 @@ namespace RPG.Combat
         [SerializeField] Transform rightHandTransform = null;
         [SerializeField] Transform leftHandTransform = null;
         [SerializeField] Weapon defaultWeapon = null;
+        [SerializeField] string defaultWeaponName = "Unarmed"; //Attacks/Unarmed if you had more folders in your Resources
 
         // Cached Component References
         Animator anim;
@@ -29,7 +30,8 @@ namespace RPG.Combat
         void Start()
         {
             anim = GetComponent<Animator>();
-            EquipWeapon(defaultWeapon);
+            Weapon weapon = Resources.Load<Weapon>(defaultWeaponName);
+            EquipWeapon(weapon);
         }
 
         // Update is called once per frame
