@@ -61,6 +61,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyRunSpeed: 3
   enemyWalkSpeed: 2
+--- !u!114 &8862639343590981261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3660232349789915059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eba1c7bdd92c7214f9a28644503f8f32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingLevel: 1
+  characterClass: 3
 --- !u!1001 &2451088745151222792
 PrefabInstance:
   m_ObjectHideFlags: 0
