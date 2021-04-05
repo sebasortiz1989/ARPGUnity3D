@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d7c4d01e2bd1e40a46cc41a29ef955, type: 3}
+  m_Name: Club
+  m_EditorClassIdentifier: 
+  weaponPrefab: {fileID: 6550865634509223079, guid: 93e7f78cd73746640903efa7cc447601,
+    type: 3}
+  weaponOverride: {fileID: 22100000, guid: 8dbbe9aeb0ae25b4e874720952d7cbd0, type: 2}
+  range: 1
+  timeBetweenAttacks: 2
+  damage: 5
+  isRightHanded: 1

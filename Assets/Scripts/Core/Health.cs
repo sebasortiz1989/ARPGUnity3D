@@ -14,8 +14,7 @@ namespace RPG.Core
         private const string DIE_TRIGGER = "die";
 
         // Initialize Variables
-        bool isDead;
-
+        public bool isDead;
 
         public void TakeDamage(float damage)
         {
@@ -30,9 +29,17 @@ namespace RPG.Core
         private void Die()
         {
             if (isDead) return;
-            isDead = true;
+            Debug.Log("Die " + name);           
             GetComponent<Animator>().SetTrigger(DIE_TRIGGER);
+            StartCoroutine(DieAgain());
+            isDead = true;
             GetComponent<ActionScheduler>().CancelCurrentAction();
+        }
+
+        IEnumerator DieAgain()
+        {
+            yield return new WaitForSeconds(0.5f);
+            GetComponent<Animator>().SetTrigger(DIE_TRIGGER);
         }
 
         public bool IsDead()

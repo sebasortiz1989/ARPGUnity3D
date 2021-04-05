@@ -1,0 +1,140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3052132744151355048
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 259328203886455695, guid: b966307804ffc044cae60579be51aa4a,
+        type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 6cc6d50c460d3f348b8e82004c327b55,
+        type: 2}
+    - target: {fileID: 2667379291225365966, guid: b966307804ffc044cae60579be51aa4a,
+        type: 3}
+      propertyPath: m_Name
+      value: OrnateSword Pickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 3601099883480351980, guid: b966307804ffc044cae60579be51aa4a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3601099883480351980, guid: b966307804ffc044cae60579be51aa4a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3601099883480351980, guid: b966307804ffc044cae60579be51aa4a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3601099883480351980, guid: b966307804ffc044cae60579be51aa4a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3601099883480351980, guid: b966307804ffc044cae60579be51aa4a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3601099883480351980, guid: b966307804ffc044cae60579be51aa4a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3601099883480351980, guid: b966307804ffc044cae60579be51aa4a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3601099883480351980, guid: b966307804ffc044cae60579be51aa4a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3601099883480351980, guid: b966307804ffc044cae60579be51aa4a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3601099883480351980, guid: b966307804ffc044cae60579be51aa4a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3601099883480351980, guid: b966307804ffc044cae60579be51aa4a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b966307804ffc044cae60579be51aa4a, type: 3}
+--- !u!4 &1991426444788943428 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3601099883480351980, guid: b966307804ffc044cae60579be51aa4a,
+    type: 3}
+  m_PrefabInstance: {fileID: 3052132744151355048}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7538639062822735658
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1991426444788943428}
+    m_Modifications:
+    - target: {fileID: 119060, guid: c17b117a7e676e148b2ee325c1e6041d, type: 3}
+      propertyPath: m_Name
+      value: SM_Wep_Ornate_Sword_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 473066, guid: c17b117a7e676e148b2ee325c1e6041d, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 473066, guid: c17b117a7e676e148b2ee325c1e6041d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 473066, guid: c17b117a7e676e148b2ee325c1e6041d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 473066, guid: c17b117a7e676e148b2ee325c1e6041d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 473066, guid: c17b117a7e676e148b2ee325c1e6041d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 473066, guid: c17b117a7e676e148b2ee325c1e6041d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 473066, guid: c17b117a7e676e148b2ee325c1e6041d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 473066, guid: c17b117a7e676e148b2ee325c1e6041d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 473066, guid: c17b117a7e676e148b2ee325c1e6041d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 473066, guid: c17b117a7e676e148b2ee325c1e6041d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 473066, guid: c17b117a7e676e148b2ee325c1e6041d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c17b117a7e676e148b2ee325c1e6041d, type: 3}

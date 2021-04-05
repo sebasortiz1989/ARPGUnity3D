@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Movement;
 using RPG.Core;
+using RPG.Saving;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour, IAction
+    public class Fighter : MonoBehaviour, IAction, ISaveable
     {
         // Config
-        [SerializeField] float weaponRange = 2f;
-        [SerializeField] [Range(0, 3)] float timeBetweenAttacks = 1f;
-        [SerializeField] float weaponDamage = 3;
+        [SerializeField] Transform rightHandTransform = null;
+        [SerializeField] Transform leftHandTransform = null;
+        [SerializeField] Weapon defaultWeapon = null;
 
         // Cached Component References
         Animator anim;
@@ -21,13 +22,20 @@ namespace RPG.Combat
         private const string STOP_ATTACK_TRIGGER = "stopAttack"; 
 
         // Initialize variables
-        public Health target;
+        Health target;
         float timeSinceLastAttack = Mathf.Infinity;
+        Weapon currentWeapon = null;
+
+        private void Awake()
+        {
+            anim = GetComponent<Animator>();
+        }
 
         // Start is called before the first frame update
         void Start()
         {
-            anim = GetComponent<Animator>();
+            if (currentWeapon == null)
+                EquipWeapon(defaultWeapon);
         }
 
         // Update is called once per frame
@@ -42,7 +50,7 @@ namespace RPG.Combat
             if (target != null && !target.IsDead())
             {
                 GetComponent<Mover>().MoveTo(target.transform.position);
-                bool inRange = Vector3.Distance(transform.position, target.transform.position) < weaponRange;
+                bool inRange = Vector3.Distance(transform.position, target.transform.position) < currentWeapon.GetRange();
                 if (inRange)
                 {
                     GetComponent<Mover>().Cancel();
@@ -54,7 +62,7 @@ namespace RPG.Combat
         private void AttackBehaviour()
         {
             transform.LookAt(target.transform);
-            if (timeSinceLastAttack >= timeBetweenAttacks)
+            if (timeSinceLastAttack >= currentWeapon.GetTimeBetweenAttacks())
             {
                 // This will trigger the Hit() event
                 TriggetAttack();
@@ -71,12 +79,19 @@ namespace RPG.Combat
         // Animation Event
         public void Hit()
         {
-            // This makes to only attack once
-            //playerAnim.ResetTrigger(ATTACK_TRIGGER);
-            //Cancel();
-
-            if (target != null) target.TakeDamage(weaponDamage);
+            if (target != null)
+            {
+                if (currentWeapon.HasProjectile())
+                    currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target);
+                else
+                    target.TakeDamage(currentWeapon.GetDamage());
+            }       
         }
+        void Shoot()
+        {
+            Hit();
+        }
+
         public void Cancel()
         {
             StopAttack();
@@ -102,6 +117,24 @@ namespace RPG.Combat
         {
             GetComponent<ActionScheduler>().StartAction(this);
             target = combatTarget.GetComponent<Health>();
+        }
+
+        public void EquipWeapon(Weapon weapon)
+        {
+            currentWeapon = weapon;
+            weapon.Spawn(rightHandTransform, leftHandTransform ,anim);
+        }
+
+        public object CaptureState()
+        {
+            return currentWeapon.name;
+        }
+
+        public void RestoreState(object state)
+        {
+            string weaponName = (string)state;
+            Weapon weapon = Resources.Load<Weapon>(weaponName);
+            EquipWeapon(weapon);
         }
     }
 }

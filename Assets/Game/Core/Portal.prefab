@@ -23,13 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1537241030}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 1.06, y: -0.35, z: -1.53}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8901710466909297345}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7155802653931983647
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,7 +57,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7155802653931983647}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -64.60861, y: -8.51277, z: 34.620476}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1537241031}
@@ -105,5 +105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22ad7271d7720d94c8e68d78fdf54919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: 1
+  sceneToLoad: 2
   spawnPoint: {fileID: 1537241031}
+  destination: 0
+  fadeOutTime: 1.5
+  fadeInTime: 1
+  fadeWaitTime: 0.5
