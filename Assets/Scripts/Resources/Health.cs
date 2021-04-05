@@ -12,21 +12,27 @@ namespace RPG.Resources
         // String const
         private const string DIE_TRIGGER = "die";
 
-        // Initialize Variables
-        public float healthPoints;
-
         // Public variables
         public bool isDead;
+        public float healthPoints;
+
+        // Initialize variables
+        float initialHealth;
 
         private void Awake()
         {
             healthPoints = GetComponent<BaseStats>().GetHealth();
+            initialHealth = healthPoints;
+        }
+
+        public float GetPercentage()
+        {
+            return 100 * (healthPoints / initialHealth);
         }
 
         public void TakeDamage(float damage)
         {
             healthPoints = Mathf.Max(healthPoints - damage, 0);
-            Debug.Log(healthPoints);
             if (healthPoints == 0 && !isDead)
             {
                 Die();

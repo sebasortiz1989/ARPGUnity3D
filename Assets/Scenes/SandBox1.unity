@@ -8596,17 +8596,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8969236408200466937, guid: 27b47708e42a78b4a8592ff0ff76e1de,
-        type: 3}
-      propertyPath: defaultWeapon
-      value: 
-      objectReference: {fileID: 11400000, guid: 6bebe6be30dcd904faca6a58e8191f77,
-        type: 2}
-    - target: {fileID: 8969236408200466937, guid: 27b47708e42a78b4a8592ff0ff76e1de,
-        type: 3}
-      propertyPath: defaultWeaponName
-      value: OrnateSword
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27b47708e42a78b4a8592ff0ff76e1de, type: 3}
 --- !u!4 &5419238295741757144
