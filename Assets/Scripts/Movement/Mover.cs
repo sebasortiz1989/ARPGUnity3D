@@ -6,6 +6,7 @@ using UnityEngine.AI;
 using RPG.Core;
 using RPG.Control;
 using RPG.Saving;
+using RPG.Resources;
 
 namespace RPG.Movement
 {
@@ -32,8 +33,7 @@ namespace RPG.Movement
         bool walkOrRun;
         private static bool rPressed;
 
-        // Start is called before the first frame update
-        void Start()
+        private void Awake()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
             anim = GetComponent<Animator>();

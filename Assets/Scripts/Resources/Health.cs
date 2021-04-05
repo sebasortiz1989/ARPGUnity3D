@@ -2,19 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RPG.Saving;
+using RPG.Stats;
+using RPG.Core;
 
-namespace RPG.Core
+namespace RPG.Resources
 {
     public class Health : MonoBehaviour, ISaveable
     {
-        // Config
-        [SerializeField] float healthPoints = 100f;
-
         // String const
         private const string DIE_TRIGGER = "die";
 
         // Initialize Variables
+        public float healthPoints;
+
+        // Public variables
         public bool isDead;
+
+        private void Awake()
+        {
+            healthPoints = GetComponent<BaseStats>().GetHealth();
+        }
 
         public void TakeDamage(float damage)
         {
