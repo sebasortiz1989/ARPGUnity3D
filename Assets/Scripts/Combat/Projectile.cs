@@ -12,6 +12,9 @@ namespace RPG.Combat
         [SerializeField] float arrowSpeed = 15f;
         [SerializeField] bool isHoming;
         [SerializeField] GameObject hitEffect = null;
+        [SerializeField] float maxLifeTime = 10f;
+        [SerializeField] GameObject[] destroyOnHit = null;
+        [SerializeField] float lifeAfterImpact = 0.2f;
 
         // String const
         private const string ENEMY_TAG = "Enemy";
@@ -23,7 +26,7 @@ namespace RPG.Combat
         private void Start()
         {
             transform.LookAt(GetAimLocation());
-            Destroy(gameObject, 5f);
+            Destroy(gameObject, maxLifeTime);
         }
 
         // Update is called once per frame
@@ -58,9 +61,20 @@ namespace RPG.Combat
             if (other.GetComponent<Health>() == target || other.CompareTag(ENEMY_TAG))
             {
                 target.TakeDamage(damage);
+
+                arrowSpeed = 0;
+
                 if (hitEffect != null)
+                {
                     Instantiate(hitEffect, other.transform.position, Quaternion.identity);
-                Destroy(gameObject);
+                }
+
+                foreach(GameObject toDestroy in destroyOnHit)
+                {
+                    Destroy(toDestroy);
+                }
+                    
+                Destroy(gameObject, lifeAfterImpact);
             }
         }
     }
