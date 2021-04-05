@@ -61,20 +61,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyRunSpeed: 3
   enemyWalkSpeed: 2
---- !u!114 &8862639343590981261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3660232349789915059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eba1c7bdd92c7214f9a28644503f8f32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingLevel: 1
-  characterClass: 3
 --- !u!1001 &2451088745151222792
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82,6 +68,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9051826938839627525, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
+        type: 3}
+      propertyPath: characterClass
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 82452334, guid: 9a90b5ee21363c24babeb0a6c4755b5f, type: 3}
       propertyPath: m_Speed
       value: 3
