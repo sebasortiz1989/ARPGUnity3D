@@ -29,7 +29,17 @@ namespace RPG.Combat
                 GameObject weapon = Instantiate(weaponPrefab, handTransform);
                 weapon.name = weaponName;
             }
-            if (weaponOverride != null) { animator.runtimeAnimatorController = weaponOverride; }      
+
+            var overRideController = animator.runtimeAnimatorController as AnimatorOverrideController;
+
+            if (weaponOverride != null) 
+            { 
+                animator.runtimeAnimatorController = weaponOverride; 
+            }
+            else if (overRideController != null)
+            {
+               animator.runtimeAnimatorController = overRideController.runtimeAnimatorController;
+            }
         }
 
         private void DestroyOldWeapon(Transform rightHand, Transform leftHand)
