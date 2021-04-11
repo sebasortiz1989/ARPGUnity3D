@@ -30,19 +30,30 @@ namespace RPG.Resources
             return 100 * (healthPoints / initialHealth);
         }
 
-        public void TakeDamage(float damage)
+        public void TakeDamage(GameObject instigator, float damage)
         {
             healthPoints = Mathf.Max(healthPoints - damage, 0);
             if (healthPoints == 0 && !isDead)
-            {
+            {           
                 Die();
+                AwardExperience(instigator);
             }
+        }
+
+        private void AwardExperience(GameObject instigator)
+        {
+            try
+            {
+                Experience instigatorExperience = instigator.GetComponent<Experience>();
+                if (instigatorExperience == null) { return; }
+                instigatorExperience.GainExperience(GetComponent<BaseStats>().GetExperienceReward());
+            }
+            finally { }
         }
 
         private void Die()
         {
-            if (isDead) return;
-            Debug.Log("Die " + name);           
+            if (isDead) return;           
             GetComponent<Animator>().SetTrigger(DIE_TRIGGER);
             StartCoroutine(DieAgain());
             isDead = true;
