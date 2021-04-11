@@ -16,8 +16,8 @@ namespace RPG.Stats
 
     private void Awake()
     {
-            experience = GameObject.FindWithTag(PLAYER_TAG).GetComponent<Experience>();
-            experienceText = GetComponent<Text>();
+        experience = GameObject.FindWithTag(PLAYER_TAG).GetComponent<Experience>();
+        experienceText = GetComponent<Text>();
     }
 
     void Update()
