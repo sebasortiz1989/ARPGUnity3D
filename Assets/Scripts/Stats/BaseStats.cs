@@ -13,8 +13,8 @@ namespace RPG.Stats
 
         private void Update()
         {
-            if (gameObject.CompareTag("Player"))
-                print(GetLevel());
+            //if (gameObject.CompareTag("Player"))
+                //print(GetLevel());
         }
 
         public float GetStat(Stat stat)
