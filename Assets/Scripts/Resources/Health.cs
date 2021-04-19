@@ -14,14 +14,15 @@ namespace RPG.Resources
 
         // Public variables
         public bool isDead;
-        public float healthPoints;
 
         // Initialize variables
         float initialHealth;
+        float healthPoints = -1;
 
         private void Awake()
         {
-            healthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
+            if (healthPoints < 0)
+                healthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
             initialHealth = healthPoints;
         }
 
