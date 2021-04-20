@@ -22,7 +22,7 @@ namespace RPG.Stats
 
     void Update()
         {         
-            levelText.text = (String.Format("{0:0}", baseStats.GetLevel()));
+            levelText.text = (String.Format("{0:0}", baseStats.CalculateLevel()));
         }
     }
 }
