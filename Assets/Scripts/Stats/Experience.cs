@@ -11,6 +11,7 @@ namespace RPG.Stats
         // Config
         [SerializeField] float experiencePoints = 0;
 
+        //public delegate void ExperienceGainedDelegate();// These two are the same, action is a predefined delegate with no return value
         public event Action onExperienceGained;
 
         public void GainExperience(float experience)

@@ -11,13 +11,19 @@ namespace RPG.Stats
         [SerializeField] CharacterClass characterClass;
         [SerializeField] Progression progression = null;
 
+        private Experience experience;
+
         // Initialize variables
         int currentLevel = 0;
+
+        private void Awake()
+        {
+            Experience experience = GetComponent<Experience>();
+        }
 
         private void Start()
         {
             currentLevel = CalculateLevel();
-            Experience experience = GetComponent<Experience>();
             if (experience != null)
             {
                 experience.onExperienceGained += UpdateLevel;
@@ -50,8 +56,6 @@ namespace RPG.Stats
 
         public int CalculateLevel()
         {
-            Experience experience = GetComponent<Experience>();
-
             if (experience == null) return startingLevel;
 
             float currentXP = experience.GetExperiencePoints();
