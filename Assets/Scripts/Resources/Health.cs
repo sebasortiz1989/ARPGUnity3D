@@ -9,6 +9,9 @@ namespace RPG.Resources
 {
     public class Health : MonoBehaviour, ISaveable
     {
+        // Config
+        [SerializeField] float _regenerationPercentageHealth = 5;
+        
         // String const
         private const string DIE_TRIGGER = "die";
 
@@ -16,14 +19,30 @@ namespace RPG.Resources
         public bool isDead;
 
         // Initialize variables
-        float initialHealth;
-        float healthPoints = -1;
+        private float initialHealth;
+        
+        public float healthPoints = -1;
+
+        private BaseStats _baseStatsFromPlayer;
+
+        public float InitialHealth { get => initialHealth; set => initialHealth = value; }
 
         private void Awake()
         {
+            _baseStatsFromPlayer = GetComponent<BaseStats>();
+
             if (healthPoints < 0)
-                healthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
+                healthPoints = _baseStatsFromPlayer.GetStat(Stat.Health);
+
             initialHealth = healthPoints;
+        }
+
+        private void Start()
+        {
+            if (_baseStatsFromPlayer != null)
+            {
+                _baseStatsFromPlayer.onLevelUp += RegenerateHealth;
+            }
         }
 
         public float GetPercentage()
@@ -39,6 +58,17 @@ namespace RPG.Resources
                 Die();
                 AwardExperience(instigator);
             }
+        }
+
+        private void RegenerateHealth()
+        {
+            float regenHealthPoints = Mathf.Round(_baseStatsFromPlayer.GetStat(Stat.Health) * (GetPercentage() + _regenerationPercentageHealth) / 100);
+            
+            if (regenHealthPoints > _baseStatsFromPlayer.GetStat(Stat.Health))
+                regenHealthPoints = _baseStatsFromPlayer.GetStat(Stat.Health);
+
+            healthPoints = Mathf.Max(healthPoints, regenHealthPoints);
+            initialHealth = _baseStatsFromPlayer.GetStat(Stat.Health);
         }
 
         private void AwardExperience(GameObject instigator)

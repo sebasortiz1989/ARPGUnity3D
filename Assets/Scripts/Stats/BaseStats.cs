@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +11,11 @@ namespace RPG.Stats
         [SerializeField] int startingLevel = 1;
         [SerializeField] CharacterClass characterClass;
         [SerializeField] Progression progression = null;
+        [SerializeField] GameObject _levelUpParticleEffect = null;
 
         private Experience _experience;
+
+        public event Action onLevelUp;
 
         // Initialize variables
         int currentLevel = 0;
@@ -36,8 +40,14 @@ namespace RPG.Stats
             if (newLevel > currentLevel)
             {
                 currentLevel = newLevel;
-                print("Level up!");
+                LevelUpEffect();
+                onLevelUp();
             }
+        }
+
+        private void LevelUpEffect()
+        {
+            Instantiate(_levelUpParticleEffect, transform);
         }
 
         public float GetStat(Stat stat)
