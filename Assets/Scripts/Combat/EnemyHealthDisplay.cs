@@ -16,9 +16,6 @@ namespace RPG.Combat
         // String const
         private const string PLAYER_TAG = "Player";
 
-        // Initialize variables
-        float enemyHealthPercent;
-
         private void Awake()
         {
             fighter = GameObject.FindWithTag(PLAYER_TAG).GetComponent<Fighter>();       
@@ -34,8 +31,7 @@ namespace RPG.Combat
             }
             else
             {
-                enemyHealthPercent = enemyHealth.GetPercentage();
-                healthText.text = (String.Format("{0:0}%", enemyHealthPercent));
+                healthText.text = enemyHealth.HealthPoints + " (" + Mathf.Round(enemyHealth.GetPercentage()) + "%)";
             }
         }
     }

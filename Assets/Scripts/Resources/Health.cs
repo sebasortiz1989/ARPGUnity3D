@@ -19,22 +19,23 @@ namespace RPG.Resources
         public bool isDead;
 
         // Initialize variables
-        private float initialHealth;
+        private float _maxHealth;
         
-        public float healthPoints = -1;
+        public float _healthPoints = -1;
 
         private BaseStats _baseStatsFromPlayer;
 
-        public float InitialHealth { get => initialHealth; set => initialHealth = value; }
+        public float MaxHealthPoints { get => _maxHealth; set => _maxHealth = value; }
+        public float HealthPoints { get => _healthPoints; set => _healthPoints = value; }
 
         private void Awake()
         {
             _baseStatsFromPlayer = GetComponent<BaseStats>();
 
-            if (healthPoints < 0)
-                healthPoints = _baseStatsFromPlayer.GetStat(Stat.Health);
+            if (_healthPoints < 0)
+                _healthPoints = _baseStatsFromPlayer.GetStat(Stat.Health);
 
-            initialHealth = healthPoints;
+            _maxHealth = _healthPoints;
         }
 
         private void Start()
@@ -47,13 +48,14 @@ namespace RPG.Resources
 
         public float GetPercentage()
         {
-            return 100 * (healthPoints / initialHealth);
+            return 100 * (_healthPoints / _maxHealth);
         }
 
         public void TakeDamage(GameObject instigator, float damage)
         {
-            healthPoints = Mathf.Max(healthPoints - damage, 0);
-            if (healthPoints == 0 && !isDead)
+            Debug.Log(gameObject.name + "took damage: " + damage);
+            _healthPoints = Mathf.Max(_healthPoints - damage, 0);
+            if (_healthPoints == 0 && !isDead)
             {           
                 Die();
                 AwardExperience(instigator);
@@ -67,8 +69,8 @@ namespace RPG.Resources
             if (regenHealthPoints > _baseStatsFromPlayer.GetStat(Stat.Health))
                 regenHealthPoints = _baseStatsFromPlayer.GetStat(Stat.Health);
 
-            healthPoints = Mathf.Max(healthPoints, regenHealthPoints);
-            initialHealth = _baseStatsFromPlayer.GetStat(Stat.Health);
+            _healthPoints = Mathf.Max(_healthPoints, regenHealthPoints);
+            _maxHealth = _baseStatsFromPlayer.GetStat(Stat.Health);
         }
 
         private void AwardExperience(GameObject instigator)
@@ -104,13 +106,13 @@ namespace RPG.Resources
 
         public object CaptureState()
         {
-            return healthPoints;
+            return _healthPoints;
         }
 
         public void RestoreState(object state)
         {
-            healthPoints = (float)state;
-            if (healthPoints == 0 && !isDead)
+            _healthPoints = (float)state;
+            if (_healthPoints == 0 && !isDead)
             {
                 Die();
             }
