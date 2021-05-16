@@ -9,7 +9,7 @@ using RPG.Stats;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour, IAction, ISaveable
+    public class Fighter : MonoBehaviour, IAction, ISaveable, IModifierProvider
     {
         // Config
         [SerializeField] Transform rightHandTransform = null;
@@ -111,6 +111,14 @@ namespace RPG.Combat
             anim.SetTrigger(STOP_ATTACK_TRIGGER);
         }
 
+        public IEnumerable<float> GetAdditiveModifier(Stat _stat)
+        {
+            if (_stat == Stat.Damage)
+            {
+                yield return currentWeapon.GetDamage();
+            }
+        }
+
         public bool CanAttack(GameObject combatTarget)
         {
             if (combatTarget == null) 
@@ -146,6 +154,8 @@ namespace RPG.Combat
         public Health GetTarget()
         {
             return target;
-        }        
+        }
+
+
     }
 }
