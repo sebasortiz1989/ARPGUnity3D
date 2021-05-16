@@ -83,7 +83,7 @@ namespace RPG.Combat
         {
             if (target != null)
             {
-                float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
+                float damage = Mathf.Round(GetComponent<BaseStats>().GetStat(Stat.Damage));
 
                 if (currentWeapon.HasProjectile())
                     currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target, gameObject, damage);
@@ -111,11 +111,19 @@ namespace RPG.Combat
             anim.SetTrigger(STOP_ATTACK_TRIGGER);
         }
 
-        public IEnumerable<float> GetAdditiveModifier(Stat _stat)
+        public IEnumerable<float> GetAdditiveModifiers(Stat _stat)
         {
             if (_stat == Stat.Damage)
             {
                 yield return currentWeapon.GetDamage();
+            }
+        }
+
+        public IEnumerable<float> GetPercentageModifiers(Stat _stat)
+        {
+            if (_stat == Stat.Damage)
+            {
+                yield return currentWeapon.GetPercentageBonus();
             }
         }
 

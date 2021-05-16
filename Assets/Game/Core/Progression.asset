@@ -41,16 +41,16 @@ MonoBehaviour:
       - 15360
     - stat: 3
       levels:
+      - 3
+      - 6
       - 10
-      - 15
-      - 20
-      - 25
+      - 14
+      - 19
+      - 24
       - 30
-      - 35
-      - 40
-      - 45
+      - 36
+      - 43
       - 50
-      - 60
   - characterClass: 1
     stats:
     - stat: 0

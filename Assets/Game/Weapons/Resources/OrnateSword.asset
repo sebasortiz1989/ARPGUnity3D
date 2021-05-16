@@ -18,5 +18,6 @@ MonoBehaviour:
   range: 2.5
   timeBetweenAttacks: 0.5
   damage: 25
+  percentageBonus: 10
   isRightHanded: 1
   projectile: {fileID: 0}
