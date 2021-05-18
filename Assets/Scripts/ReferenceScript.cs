@@ -43,17 +43,17 @@ public class ReferenceScript : MonoBehaviour
 
     private void Awake()
     {
-        runSpeed = PlayerPrefs.GetFloat(RUNNINGSPEED);
-        attackSpeed = PlayerPrefs.GetFloat(ATTACKSPEED);
+        myRigidBody = GetComponent<Rigidbody2D>();
+        myAnimator = GetComponent<Animator>();
+        mySprite = GetComponent<SpriteRenderer>();
+        myCollider = GetComponent<CapsuleCollider2D>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        myRigidBody = GetComponent<Rigidbody2D>();
-        myAnimator = GetComponent<Animator>();
-        mySprite = GetComponent<SpriteRenderer>();
-        myCollider = GetComponent<CapsuleCollider2D>();
+        runSpeed = PlayerPrefs.GetFloat(RUNNINGSPEED);
+        attackSpeed = PlayerPrefs.GetFloat(ATTACKSPEED);
         myAnimator.SetFloat(ATTACKING_SPEED_ANIM, attackSpeed);
     }
 

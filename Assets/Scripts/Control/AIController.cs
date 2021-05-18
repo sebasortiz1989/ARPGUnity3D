@@ -40,7 +40,6 @@ namespace RPG.Control
 
         private void Awake()
         {
-            player = GameObject.FindWithTag(PLAYER_TAG);
             fighter = GetComponent<Fighter>();
             health = GetComponent<Health>();
             mover = GetComponent<Mover>();
@@ -51,6 +50,7 @@ namespace RPG.Control
         // Start is called before the first frame update
         void Start()
         {
+            player = GameObject.FindWithTag(PLAYER_TAG);
             guardLocation = transform.position;
             guardRotation = transform.rotation;
         }

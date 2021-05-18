@@ -16,8 +16,12 @@ namespace RPG.Resources
 
         private void Awake()
         {
-            health = GameObject.FindWithTag(PLAYER_TAG).GetComponent<Health>();
             healthText = GetComponent<Text>();      
+        }
+
+        private void Start()
+        {
+            health = GameObject.FindWithTag(PLAYER_TAG).GetComponent<Health>();
         }
 
         void Update()

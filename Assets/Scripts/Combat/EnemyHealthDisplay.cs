@@ -17,9 +17,13 @@ namespace RPG.Combat
         private const string PLAYER_TAG = "Player";
 
         private void Awake()
-        {
-            fighter = GameObject.FindWithTag(PLAYER_TAG).GetComponent<Fighter>();       
+        {  
             healthText = GetComponent<Text>(); 
+        }
+
+        private void Start()
+        {
+            fighter = GameObject.FindWithTag(PLAYER_TAG).GetComponent<Fighter>();
         }
 
         void Update()

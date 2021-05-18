@@ -29,9 +29,21 @@ namespace RPG.Stats
         private void Start()
         {
             currentLevel = CalculateLevel();
+        }
+
+        private void OnEnable()
+        {
             if (_experience != null)
             {
                 _experience.onExperienceGained += UpdateLevel;
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (_experience != null)
+            {
+                _experience.onExperienceGained -= UpdateLevel;
             }
         }
 

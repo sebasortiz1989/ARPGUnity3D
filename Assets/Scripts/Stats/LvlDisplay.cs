@@ -7,20 +7,24 @@ namespace RPG.Stats
 {
     public class LvlDisplay : MonoBehaviour
     {
-    // Cached references
-    BaseStats baseStats;
-    Text levelText;
+        // Cached references
+        BaseStats baseStats;
+        Text levelText;
 
-    // String const
-    private const string PLAYER_TAG = "Player";
+        // String const
+        private const string PLAYER_TAG = "Player";
 
-    private void Awake()
-    {
-        baseStats = GameObject.FindWithTag(PLAYER_TAG).GetComponent<BaseStats>();
-        levelText = GetComponent<Text>();
-    }
+        private void Awake()
+        {
+            levelText = GetComponent<Text>();
+        }
 
-    void Update()
+        private void Start()
+        {
+            baseStats = GameObject.FindWithTag(PLAYER_TAG).GetComponent<BaseStats>();
+        }
+
+        void Update()
         {         
             levelText.text = (String.Format("{0:0}", baseStats.CalculateLevel()));
         }
