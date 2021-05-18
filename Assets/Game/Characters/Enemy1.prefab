@@ -59,6 +59,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b926d8462f21d4fa41bc3cd2cf930d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyRunSpeed: 4
+  enemyWalkSpeed: 2
 --- !u!1001 &2451088745151222792
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -191,6 +193,7 @@ PrefabInstance:
     - {fileID: 82452333, guid: 9a90b5ee21363c24babeb0a6c4755b5f, type: 3}
     - {fileID: 5640839475204974391, guid: 9a90b5ee21363c24babeb0a6c4755b5f, type: 3}
     - {fileID: 4989351344971590118, guid: 9a90b5ee21363c24babeb0a6c4755b5f, type: 3}
+    - {fileID: 1216364693838009186, guid: 9a90b5ee21363c24babeb0a6c4755b5f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9a90b5ee21363c24babeb0a6c4755b5f, type: 3}
 --- !u!1 &3660232349789915059 stripped
 GameObject:

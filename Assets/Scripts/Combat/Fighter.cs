@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RPG.Movement;
+using RPG.Resources;
 using RPG.Core;
 using RPG.Saving;
+using RPG.Stats;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour, IAction, ISaveable
+    public class Fighter : MonoBehaviour, IAction, ISaveable, IModifierProvider
     {
         // Config
         [SerializeField] Transform rightHandTransform = null;
@@ -81,10 +83,14 @@ namespace RPG.Combat
         {
             if (target != null)
             {
+                float damage = Mathf.Round(GetComponent<BaseStats>().GetStat(Stat.Damage));
+
                 if (currentWeapon.HasProjectile())
-                    currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target);
+                    currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target, gameObject, damage);
                 else
-                    target.TakeDamage(currentWeapon.GetDamage());
+                {
+                    target.TakeDamage(gameObject, damage);
+                }
             }       
         }
         void Shoot()
@@ -103,6 +109,22 @@ namespace RPG.Combat
         {
             anim.ResetTrigger(ATTACK_TRIGGER);
             anim.SetTrigger(STOP_ATTACK_TRIGGER);
+        }
+
+        public IEnumerable<float> GetAdditiveModifiers(Stat _stat)
+        {
+            if (_stat == Stat.Damage)
+            {
+                yield return currentWeapon.GetDamage();
+            }
+        }
+
+        public IEnumerable<float> GetPercentageModifiers(Stat _stat)
+        {
+            if (_stat == Stat.Damage)
+            {
+                yield return currentWeapon.GetPercentageBonus();
+            }
         }
 
         public bool CanAttack(GameObject combatTarget)
@@ -133,8 +155,15 @@ namespace RPG.Combat
         public void RestoreState(object state)
         {
             string weaponName = (string)state;
-            Weapon weapon = Resources.Load<Weapon>(weaponName);
+            Weapon weapon = UnityEngine.Resources.Load<Weapon>(weaponName);
             EquipWeapon(weapon);
         }
+
+        public Health GetTarget()
+        {
+            return target;
+        }
+
+
     }
 }

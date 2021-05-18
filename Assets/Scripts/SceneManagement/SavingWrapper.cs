@@ -14,7 +14,12 @@ namespace RPG.SceneManagement
         // Const string
         private const string DEFAULT_SAVE_FILE = "save";
 
-        IEnumerator Start()
+        private void Start()
+        {
+            StartCoroutine(LoadLastScene());
+        }
+
+        IEnumerator LoadLastScene()
         {
             Fader fader = FindObjectOfType<Fader>();
             fader.FadeOutImmediate();
@@ -37,6 +42,10 @@ namespace RPG.SceneManagement
             {
                 Save();
             }
+            if (Input.GetKeyDown(KeyCode.Delete))
+            {
+                Delete();
+            }
         }
 
         public void Save()
@@ -47,6 +56,11 @@ namespace RPG.SceneManagement
         public void Load()
         {
             GetComponent<SavingSystem>().Load(DEFAULT_SAVE_FILE);
+        }
+
+        public void Delete()
+        {
+            GetComponent<SavingSystem>().Delete(DEFAULT_SAVE_FILE);
         }
     }
 }

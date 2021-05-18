@@ -5,6 +5,7 @@ using UnityEngine;
 using RPG.Combat;
 using RPG.Core;
 using RPG.Movement;
+using RPG.Resources;
 using System;
 
 namespace RPG.Control
@@ -36,16 +37,20 @@ namespace RPG.Control
         public float timeSinceLastSawPlayer = Mathf.Infinity;
         public float timeSinceWaypoint = Mathf.Infinity;
         int currentWaypointIndex = 0;
-        
-        // Start is called before the first frame update
-        void Start()
+
+        private void Awake()
         {
-            player = GameObject.FindWithTag(PLAYER_TAG);
             fighter = GetComponent<Fighter>();
             health = GetComponent<Health>();
             mover = GetComponent<Mover>();
             navMeshAgent = GetComponent<NavMeshAgent>();
             actionScheduler = GetComponent<ActionScheduler>();
+        }
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            player = GameObject.FindWithTag(PLAYER_TAG);
             guardLocation = transform.position;
             guardRotation = transform.rotation;
         }

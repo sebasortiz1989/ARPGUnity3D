@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using RPG.Core;
+using RPG.Resources;
 using System;
 
 namespace RPG.Combat
@@ -14,6 +14,7 @@ namespace RPG.Combat
         [SerializeField] float range = 2f;
         [SerializeField] float timeBetweenAttacks = 1f;
         [SerializeField] float damage = 3f;
+        [SerializeField] float percentageBonus = 0f;
         [SerializeField] bool isRightHanded = true;
         [SerializeField] Projectile projectile = null;
 
@@ -66,12 +67,13 @@ namespace RPG.Combat
             return handTransform;
         }
 
-        public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target)
+        public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target, GameObject instigator, float _calculatedDamage)
         {
             Projectile projectileInstance = Instantiate(projectile, GetTranform(rightHand, leftHand).position, Quaternion.identity);
-            projectileInstance.SetTarget(target, damage);
+            projectileInstance.SetTarget(target, instigator, _calculatedDamage);
         }
 
+        public float GetPercentageBonus() { return percentageBonus; }
         public bool HasProjectile() { return projectile != null; }
         public float GetRange() { return range; }
         public float GetDamage() { return damage; }

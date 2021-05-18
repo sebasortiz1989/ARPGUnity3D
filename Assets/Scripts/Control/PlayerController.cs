@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Movement;
 using RPG.Combat;
-using RPG.Core;
+using RPG.Resources;
 
 namespace RPG.Control
 {
@@ -12,11 +12,11 @@ namespace RPG.Control
         // Cached reference
         Health health;
 
-        // Start is called before the first frame update
-        void Start()
+        private void Awake()
         {
             health = GetComponent<Health>();
         }
+
         // Update is called once per frame
         void Update()
         {
