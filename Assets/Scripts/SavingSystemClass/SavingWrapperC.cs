@@ -6,7 +6,7 @@ namespace RPG.SavingC
 {
     public class SavingWrapperC : MonoBehaviour
     {
-        private const string defaultSaveFile = "save";
+        private const string defaultSaveFile = "RPGSaveData";
         private SavingSystemC _savingSystem;
 
         private void Awake()
