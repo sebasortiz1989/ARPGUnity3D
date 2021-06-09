@@ -24,14 +24,6 @@ namespace RPG.Control
         // Cached reference
         private Health health;
 
-        enum CursorType
-        {
-            None,
-            Movement,
-            Combat,
-            UI
-        }
-
         private void Awake()
         {
             health = GetComponent<Health>();
@@ -62,7 +54,7 @@ namespace RPG.Control
                 {
                     if (raycastable.HandleRaycast(this))
                     {
-                        SetCursor(CursorType.Combat);
+                        SetCursor(raycastable.GetCursorType());
                         return true;
                     }
                 }
