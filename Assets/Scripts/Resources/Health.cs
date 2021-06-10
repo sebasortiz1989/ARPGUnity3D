@@ -12,7 +12,10 @@ namespace RPG.Resources
     {
         // Config
         [SerializeField] float _regenerationPercentageHealth = 5;
-        [SerializeField] UnityEvent takeDamage;
+        [SerializeField] TakeDamageEvent takeDamage;
+
+        [System.Serializable]
+        public class TakeDamageEvent : UnityEvent<float>{}
         
         // String const
         private const string DIE_TRIGGER = "die";
@@ -55,10 +58,10 @@ namespace RPG.Resources
 
         public void TakeDamage(GameObject instigator, float damage)
         {
-            Debug.Log(gameObject.name + " took damage: " + damage);
+            //Debug.Log(gameObject.name + " took damage: " + damage);
             _healthPoints = Mathf.Max(_healthPoints - damage, 0);
 
-            takeDamage.Invoke();
+            takeDamage.Invoke(damage);
 
             if (_healthPoints == 0 && !isDead)
             {           
