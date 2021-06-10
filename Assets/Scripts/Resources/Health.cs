@@ -57,6 +57,7 @@ namespace RPG.Resources
         {
             Debug.Log(gameObject.name + " took damage: " + damage);
             _healthPoints = Mathf.Max(_healthPoints - damage, 0);
+
             takeDamage.Invoke();
 
             if (_healthPoints == 0 && !isDead)

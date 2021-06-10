@@ -8913,6 +8913,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3700661623806718417, guid: 27b47708e42a78b4a8592ff0ff76e1de,
         type: 3}
+      propertyPath: _regenerationPercentageHealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3700661623806718417, guid: 27b47708e42a78b4a8592ff0ff76e1de,
+        type: 3}
       propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 805175422}
@@ -8924,7 +8929,7 @@ PrefabInstance:
     - target: {fileID: 3700661623806718417, guid: 27b47708e42a78b4a8592ff0ff76e1de,
         type: 3}
       propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
-      value: 100
+      value: 333
       objectReference: {fileID: 0}
     - target: {fileID: 7713966408935028671, guid: 27b47708e42a78b4a8592ff0ff76e1de,
         type: 3}
