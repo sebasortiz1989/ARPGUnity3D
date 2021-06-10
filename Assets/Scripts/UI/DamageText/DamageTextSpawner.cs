@@ -8,14 +8,10 @@ namespace RPG.UI.DamageText
     {
         [SerializeField] DamageText _damageTextPrefab = null;
 
-        void Start()
-        {
-            Spawn(12);
-        }
-
         public void Spawn(float damageAmount)
         {
             DamageText instance = Instantiate<DamageText>(_damageTextPrefab, transform);
+            Destroy(instance.gameObject, 1.5f);
         }
     }
 }

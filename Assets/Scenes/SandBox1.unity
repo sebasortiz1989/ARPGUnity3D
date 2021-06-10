@@ -2553,6 +2553,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 801572574}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &805175422 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7097970204848446446, guid: 27b47708e42a78b4a8592ff0ff76e1de,
+    type: 3}
+  m_PrefabInstance: {fileID: 2394155689888325857}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 182552c45fe237644b4d6f9e49f5fcb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &807350148
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8898,6 +8910,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3700661623806718417, guid: 27b47708e42a78b4a8592ff0ff76e1de,
+        type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 805175422}
+    - target: {fileID: 3700661623806718417, guid: 27b47708e42a78b4a8592ff0ff76e1de,
+        type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Spawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 3700661623806718417, guid: 27b47708e42a78b4a8592ff0ff76e1de,
+        type: 3}
+      propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7713966408935028671, guid: 27b47708e42a78b4a8592ff0ff76e1de,
         type: 3}

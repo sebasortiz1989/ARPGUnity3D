@@ -4,6 +4,7 @@ using UnityEngine;
 using RPG.Saving;
 using RPG.Stats;
 using RPG.Core;
+using UnityEngine.Events;
 
 namespace RPG.Resources
 {
@@ -11,6 +12,7 @@ namespace RPG.Resources
     {
         // Config
         [SerializeField] float _regenerationPercentageHealth = 5;
+        [SerializeField] UnityEvent takeDamage;
         
         // String const
         private const string DIE_TRIGGER = "die";
@@ -55,6 +57,8 @@ namespace RPG.Resources
         {
             Debug.Log(gameObject.name + " took damage: " + damage);
             _healthPoints = Mathf.Max(_healthPoints - damage, 0);
+            takeDamage.Invoke();
+
             if (_healthPoints == 0 && !isDead)
             {           
                 Die();
