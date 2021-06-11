@@ -17,7 +17,7 @@ MonoBehaviour:
   weaponOverride: {fileID: 22100000, guid: 8ea0763ee8ef7014ab632bd0b4651281, type: 2}
   range: 12
   timeBetweenAttacks: 1
-  damage: 10
+  damage: 5
   percentageBonus: 4
   isRightHanded: 0
   projectile: {fileID: 7199446977461691413, guid: 5ea48dbaad7935d4aa1239913a060fdd,

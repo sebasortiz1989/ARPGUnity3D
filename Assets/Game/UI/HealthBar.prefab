@@ -221,6 +221,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentHealthBar: {fileID: 2874084106073630674}
+  _health: {fileID: 0}
+  _canvas: {fileID: 233345236308837840}
 --- !u!1 &7407780993913199367
 GameObject:
   m_ObjectHideFlags: 0
