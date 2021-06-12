@@ -2229,6 +2229,11 @@ PrefabInstance:
       propertyPath: destination
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 135741260694225831, guid: e49c0481bd27e3a44a60c8830ca9406f,
+        type: 3}
+      propertyPath: fadeOutTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7155802653931983647, guid: e49c0481bd27e3a44a60c8830ca9406f,
         type: 3}
       propertyPath: m_Name
@@ -6124,7 +6129,7 @@ PrefabInstance:
     - target: {fileID: 135741260694225831, guid: e49c0481bd27e3a44a60c8830ca9406f,
         type: 3}
       propertyPath: fadeOutTime
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 135741260694225831, guid: e49c0481bd27e3a44a60c8830ca9406f,
         type: 3}
@@ -7910,6 +7915,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 135741260694225831, guid: e49c0481bd27e3a44a60c8830ca9406f,
+        type: 3}
+      propertyPath: fadeOutTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7155802653931983647, guid: e49c0481bd27e3a44a60c8830ca9406f,
         type: 3}
       propertyPath: m_Name
