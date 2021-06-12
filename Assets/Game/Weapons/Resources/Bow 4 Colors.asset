@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14d7c4d01e2bd1e40a46cc41a29ef955, type: 3}
   m_Name: Bow 4 Colors
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 6550865634509223079, guid: e0e79378c8e0eb54ba6216565e11bc9d,
+  weaponPrefab: {fileID: 855536472413972032, guid: 8b24bd815364b61449ca43c4452d07d6,
     type: 3}
   weaponOverride: {fileID: 22100000, guid: 4af8c48340eea634ebce6217447bbc01, type: 2}
   range: 12

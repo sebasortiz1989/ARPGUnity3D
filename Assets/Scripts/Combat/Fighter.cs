@@ -14,7 +14,7 @@ namespace RPG.Combat
         // Config
         [SerializeField] Transform rightHandTransform = null;
         [SerializeField] Transform leftHandTransform = null;
-        [SerializeField] Weapon defaultWeapon = null;
+        [SerializeField] WeaponConfig defaultWeapon = null;
 
         // Cached Component References
         Animator anim;
@@ -26,7 +26,7 @@ namespace RPG.Combat
         // Initialize variables
         Health target;
         float timeSinceLastAttack = Mathf.Infinity;
-        Weapon currentWeapon = null;
+        WeaponConfig currentWeapon = null;
 
         private void Awake()
         {
@@ -141,7 +141,7 @@ namespace RPG.Combat
             target = combatTarget.GetComponent<Health>();
         }
 
-        public void EquipWeapon(Weapon weapon)
+        public void EquipWeapon(WeaponConfig weapon)
         {
             currentWeapon = weapon;
             weapon.Spawn(rightHandTransform, leftHandTransform ,anim);
@@ -155,7 +155,7 @@ namespace RPG.Combat
         public void RestoreState(object state)
         {
             string weaponName = (string)state;
-            Weapon weapon = UnityEngine.Resources.Load<Weapon>(weaponName);
+            WeaponConfig weapon = UnityEngine.Resources.Load<WeaponConfig>(weaponName);
             EquipWeapon(weapon);
         }
 
