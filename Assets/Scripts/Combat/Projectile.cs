@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RPG.Attributes;
+using UnityEngine.Events;
 
 namespace RPG.Combat
 {
@@ -15,6 +16,7 @@ namespace RPG.Combat
         [SerializeField] float maxLifeTime = 10f;
         [SerializeField] GameObject[] destroyOnHit = null;
         [SerializeField] float lifeAfterImpact = 0.2f;
+        [SerializeField] UnityEvent _onHit;
 
         // String const
         private const string ENEMY_TAG = "Enemy";
@@ -64,6 +66,8 @@ namespace RPG.Combat
                 target.TakeDamage(instigator, damage);
 
                 arrowSpeed = 0;
+
+                _onHit.Invoke();
 
                 if (hitEffect != null)
                 {

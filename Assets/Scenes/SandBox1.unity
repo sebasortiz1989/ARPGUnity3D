@@ -8868,6 +8868,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3700661623806718417, guid: 27b47708e42a78b4a8592ff0ff76e1de,
         type: 3}
+      propertyPath: _onDie.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3700661623806718417, guid: 27b47708e42a78b4a8592ff0ff76e1de,
+        type: 3}
+      propertyPath: _onDie.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3700661623806718417, guid: 27b47708e42a78b4a8592ff0ff76e1de,
+        type: 3}
+      propertyPath: _onDie.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3700661623806718417, guid: 27b47708e42a78b4a8592ff0ff76e1de,
+        type: 3}
       propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 805175422}
@@ -8881,6 +8896,11 @@ PrefabInstance:
       propertyPath: takeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
       value: 111
       objectReference: {fileID: 0}
+    - target: {fileID: 5049538249790188852, guid: 27b47708e42a78b4a8592ff0ff76e1de,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c67b8f28ccb1a184cba5b958315fb75f, type: 3}
     - target: {fileID: 7713966408935028671, guid: 27b47708e42a78b4a8592ff0ff76e1de,
         type: 3}
       propertyPath: _cursorMappings.Array.size

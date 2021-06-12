@@ -87,7 +87,7 @@ PrefabInstance:
     - target: {fileID: 888114253265155573, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 888114253265155573, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
         type: 3}
@@ -179,6 +179,11 @@ PrefabInstance:
       propertyPath: healthPoints
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 5844952349252932260, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2ebf38d5081e6024eb5214ce611bd747, type: 3}
     - target: {fileID: 7743870870950096489, guid: 9a90b5ee21363c24babeb0a6c4755b5f,
         type: 3}
       propertyPath: weapon
