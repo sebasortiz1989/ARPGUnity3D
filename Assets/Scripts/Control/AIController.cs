@@ -19,6 +19,7 @@ namespace RPG.Control
         [SerializeField] float waypointDwellTime = 4f;
         [SerializeField] PatrolPath patrolPath;
         [SerializeField] float waypointTolerance = 1.1f;
+        [SerializeField] float shotDistance = 5f;
 
         // String const
         private const string PLAYER_TAG = "Player";
@@ -158,6 +159,20 @@ namespace RPG.Control
         {
             timeSinceLastSawPlayer = 0;
             fighter.Attack(player);
+
+            AggrevateNearByEnemies();
+        }
+
+        private void AggrevateNearByEnemies()
+        {
+            RaycastHit[] hits = Physics.SphereCastAll(transform.position, shotDistance, Vector3.up, 0);
+            foreach(RaycastHit hit in hits)
+            {
+                AIController ai = hit.transform.gameObject.GetComponent<AIController>();
+                if (ai == null) continue;
+
+                ai.Aggrevate();
+            }
         }
 
         // Called by Unity
