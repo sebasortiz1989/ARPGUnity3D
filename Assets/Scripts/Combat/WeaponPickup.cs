@@ -4,6 +4,7 @@ using UnityEngine;
 using RPG.Combat;
 using System;
 using RPG.Control;
+using RPG.Attributes;
 
 namespace RPG.Combat
 {
@@ -11,6 +12,7 @@ namespace RPG.Combat
     {
         // Config
         [SerializeField] WeaponConfig weapon;
+        [SerializeField] float healthToRestore = 0;
         [SerializeField] float respawnTime = 10f;
 
         // String const
@@ -19,13 +21,21 @@ namespace RPG.Combat
         {
             if (other.CompareTag(PLAYER_TAG))
             {
-                Pickup(other.GetComponent<Fighter>());
+                Pickup(other.gameObject);
             }
         }
 
-        private void Pickup(Fighter _fighter)
-        {    
-            _fighter.WeaponEquipped = _fighter.EquipWeapon(weapon);
+        private void Pickup(GameObject subject)
+        {
+            if (weapon != null)
+            {
+                Fighter _fighter = subject.GetComponent<Fighter>();
+                _fighter.WeaponEquipped = _fighter.EquipWeapon(weapon);
+            }
+            if (healthToRestore > 0)
+            {
+                subject.GetComponent<Health>().Heal(healthToRestore);
+            }
             StartCoroutine(HideForSeconds(respawnTime));
         }
 
@@ -50,7 +60,7 @@ namespace RPG.Combat
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Pickup(callingController.GetComponent<Fighter>());
+                Pickup(callingController.gameObject);
             }
             return true;
         }
