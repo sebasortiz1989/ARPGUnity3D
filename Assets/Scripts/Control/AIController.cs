@@ -15,6 +15,7 @@ namespace RPG.Control
         // Config
         [SerializeField] float chaseDistance = 6f;
         [SerializeField] float timeToWaitSuspiciously = 6f;
+        [SerializeField] float aggroCoolDownTime = 5f;
         [SerializeField] float waypointDwellTime = 4f;
         [SerializeField] PatrolPath patrolPath;
         [SerializeField] float waypointTolerance = 1.1f;
@@ -36,6 +37,7 @@ namespace RPG.Control
         Quaternion guardRotation;
         public float timeSinceLastSawPlayer = Mathf.Infinity;
         public float timeSinceWaypoint = Mathf.Infinity;
+        float timeSinceAggrevated = Mathf.Infinity;
         int currentWaypointIndex = 0;
 
         private void Awake()
@@ -59,14 +61,20 @@ namespace RPG.Control
         void Update()
         {
             if (health.IsDead()) return;
+
             AttackIfPlayerInRange();
         }
 
+        public void Aggrevate()
+        {
+            timeSinceAggrevated = 0;
+        }
+
         public bool AttackIfPlayerInRange()
-        {           
-            distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-            if (distanceToPlayer <= chaseDistance && fighter.CanAttack(player))
-            {               
+        {
+
+            if (IsAggrevated() && fighter.CanAttack(player))
+            {
                 AttackBehaviour();
                 return true;
             }
@@ -83,10 +91,17 @@ namespace RPG.Control
             return false;
         }
 
+        private bool IsAggrevated()
+        {
+            distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+            return distanceToPlayer < chaseDistance || timeSinceAggrevated < aggroCoolDownTime;
+        }
+
         private void UpdateTimers()
         {
             timeSinceLastSawPlayer += Time.deltaTime;
             timeSinceWaypoint += Time.deltaTime;
+            timeSinceAggrevated += Time.deltaTime;
         }
 
         private void PatrolGuardBehaviour()
