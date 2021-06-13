@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14d7c4d01e2bd1e40a46cc41a29ef955, type: 3}
   m_Name: Rapier
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 6550865634509223079, guid: 1016eac402dac744e81d8c0d4fea9ade,
+  weaponPrefab: {fileID: 2633709738190392086, guid: 1016eac402dac744e81d8c0d4fea9ade,
     type: 3}
   weaponOverride: {fileID: 22100000, guid: 1de9790c272e43042927a5c5d008c564, type: 2}
   range: 2.7

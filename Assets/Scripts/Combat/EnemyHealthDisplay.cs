@@ -2,7 +2,7 @@ using System.Collections;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-using RPG.Resources;
+using RPG.Attributes;
 
 namespace RPG.Combat
 {
