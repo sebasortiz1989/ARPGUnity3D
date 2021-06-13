@@ -24,8 +24,8 @@ namespace RPG.Combat
         }
 
         private void Pickup(Fighter _fighter)
-        {
-            _fighter.EquipWeapon(weapon);
+        {    
+            _fighter.WeaponEquipped = _fighter.EquipWeapon(weapon);
             StartCoroutine(HideForSeconds(respawnTime));
         }
 

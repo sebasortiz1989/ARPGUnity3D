@@ -21,12 +21,25 @@ namespace RPG.Combat
 
         // String const
         private const string ATTACK_TRIGGER = "attack";
-        private const string STOP_ATTACK_TRIGGER = "stopAttack"; 
+        private const string STOP_ATTACK_TRIGGER = "stopAttack";
 
         // Initialize variables
-        Health target;
-        float timeSinceLastAttack = Mathf.Infinity;
-        WeaponConfig currentWeapon = null;
+        private Health target;
+        private float timeSinceLastAttack = Mathf.Infinity;
+        private WeaponConfig currentWeapon = null;
+        
+        private Weapon _weaponx = null;
+        public Weapon WeaponEquipped
+        {
+            get
+            {
+                return _weaponx;
+            }
+            set
+            {
+                _weaponx = value;
+            }
+        }
 
         private void Awake()
         {
@@ -37,7 +50,7 @@ namespace RPG.Combat
         void Start()
         {
             if (currentWeapon == null)
-                EquipWeapon(defaultWeapon);
+                WeaponEquipped = EquipWeapon(defaultWeapon);
         }
 
         // Update is called once per frame
@@ -84,6 +97,9 @@ namespace RPG.Combat
             if (target != null)
             {
                 float damage = Mathf.Round(GetComponent<BaseStats>().GetStat(Stat.Damage));
+
+                if (_weaponx != null)
+                    _weaponx.OnHit();
 
                 if (currentWeapon.HasProjectile())
                     currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target, gameObject, damage);
@@ -141,10 +157,11 @@ namespace RPG.Combat
             target = combatTarget.GetComponent<Health>();
         }
 
-        public void EquipWeapon(WeaponConfig weapon)
+        public Weapon EquipWeapon(WeaponConfig weapon)
         {
             currentWeapon = weapon;
-            weapon.Spawn(rightHandTransform, leftHandTransform ,anim);
+            Weapon _weapon = weapon.Spawn(rightHandTransform, leftHandTransform ,anim);
+            return _weapon;
         }
 
         public object CaptureState()
@@ -156,7 +173,7 @@ namespace RPG.Combat
         {
             string weaponName = (string)state;
             WeaponConfig weapon = UnityEngine.Resources.Load<WeaponConfig>(weaponName);
-            EquipWeapon(weapon);
+            WeaponEquipped = EquipWeapon(weapon);
         }
 
         public Health GetTarget()

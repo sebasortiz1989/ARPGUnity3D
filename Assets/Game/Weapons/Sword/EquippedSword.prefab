@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa013a256cb1e3348b45cf007637cb50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _weaponStrikeSound: {fileID: 8300000, guid: 379e40c9ee994864fa1cbcd90934c6a9, type: 3}
 --- !u!1001 &713607156352347360
 PrefabInstance:
   m_ObjectHideFlags: 0
